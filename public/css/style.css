@@ -1,0 +1,29 @@
+header {
+    background-color: #aeaeae !important;
+  }
+
+  main {
+    background-color:  #1b89bc;
+  }
+  .in-line {
+    /* justify-content: space-between; */
+    color: #1b89bc;
+  }
+
+  section {
+    background-color: #1b89bc !important;
+    color:black;
+  }
+
+  .blog-post {
+    border: 2px solid black;
+  }
+.blog-header {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .blog-header p {
+    justify-content: space-between;
+} */
