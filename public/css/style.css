@@ -1,29 +1,25 @@
+body {
+  font-family: 'Press Start 2P' Helvetica, Verdana, sans-serif;
+  background-color: #aeaeae;
+}
+
 header {
-    background-color: #aeaeae !important;
+    margin-top: 100px;
+    background-color: #aeaeae;
+    color: #212529;
+  }
+  h1 {
+    text-align: center;
+    font-size: 50px;
   }
 
   main {
-    background-color:  #1b89bc;
+   font-size: 12px;
   }
-  .in-line {
-    /* justify-content: space-between; */
-    color: #1b89bc;
-  }
-
-  section {
-    background-color: #1b89bc !important;
-    color:black;
+  
+  .narrowBox {
+    width: 30%;
+    margin: 30px auto ;
   }
 
-  .blog-post {
-    border: 2px solid black;
-  }
-.blog-header {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* .blog-header p {
-    justify-content: space-between;
-} */
+  
