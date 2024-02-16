@@ -1,12 +1,12 @@
 const router = require('express').Router();
 
-// const apiRoutes = require('./api');
+const apiRoutes = require('./api');
 const homeRoutes = require('./homeRoutes.js');
 
 router.use('/', homeRoutes);
-// router.use('/api', apiRoutes);
+router.use('/api', apiRoutes);
 
-module.exports = router;
+// module.exports = router;
 
 // import OpenAI from "openai";
 
@@ -26,3 +26,5 @@ module.exports = router;
 //     console.log()
 // }
 // aiStart()
+
+module.exports = router;
