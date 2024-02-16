@@ -9,38 +9,86 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet"/>
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="/css/style2.css">
-</head>
+    <!-- <link rel="stylesheet" href="/css/style2.css"> -->
 
-<body>
-<div id="container">
-    <div id="sortable-box">
-        <h2>Sortable List</h2>
-        <ul id="sortable-list">
-            <li class="sortable-item">Item 1</li>
-            <li class="sortable-item">Item 2</li>
-            <li class="sortable-item">Item 3</li>
-            <li class="sortable-item">Item 4</li>
-            <li class="sortable-item">Item 5</li>
-        </ul>
-    </div>
-    <div id="stacked-boxes">
-        <div class="stacked-box">
-            <h2>Box 1</h2>
-            <p>This is box 1 content.</p>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        #container {
+            display: flex;
+        }
+    
+        #sortable-box {
+            flex: 1;
+            margin-right: 20px;
+        }
+    
+        #sortable-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    
+        .sortable-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: grab;
+        }
+    
+        #stacked-boxes {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .stacked-box {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+    </head>
+    <body>
+    <div id="container">
+        <div id="sortable-box">
+            <h2>Sortable List</h2>
+            <ul id="sortable-list">
+                <li class="sortable-item">Item 1</li>
+                <li class="sortable-item">Item 2</li>
+                <li class="sortable-item">Item 3</li>
+                <li class="sortable-item">Item 4</li>
+                <li class="sortable-item">Item 5</li>
+            </ul>
         </div>
-        <div class="stacked-box">
-            <h2>Box 2</h2>
-            <p>This is box 2 content.</p>
+        <div id="stacked-boxes">
+            <div class="stacked-box">
+                <h2>Box 1</h2>
+                <p>This is box 1 content.</p>
+            </div>
+            <div class="stacked-box">
+                <h2>Box 2</h2>
+                <p>This is box 2 content.</p>
+            </div>
         </div>
     </div>
-</div>
-
-<script>
-    // Make the list sortable
-    Sortable.create(document.getElementById('sortable-list'), {
-        animation: 150
-    });
-</script>
-</body>
-</html>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script>
+        // Make the list sortable
+        Sortable.create(document.getElementById('sortable-list'), {
+            animation: 150
+        });
+    </script>
+    </body>
+    </html>

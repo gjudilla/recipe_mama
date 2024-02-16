@@ -3,6 +3,7 @@ CREATE DATABASE users_db;
 USE users_db;
 
 CREATE TABLE `accounts` (
-  `userName` int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL 
-  `userPassword` varchar(100) NOT NULL,
+  `userID` int(30) NOT NULL AUTO_INCREMENT,
+  `userName` varchar(50) NOT NULL,
+  `userPassword` varchar(50) NOT NULL,
 )
