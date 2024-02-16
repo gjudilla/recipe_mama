@@ -16,16 +16,20 @@ Recipe.init(
       allowNull: false,
     },
     ingredients: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    instructions: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     postedBy: {
       type: DataTypes.STRING,
       allowNull: false,
-      references: {
-        model: 'user',
-        key: 'userName',
-      },
+      // references: {
+      //   model: 'user',
+      //   key: 'userName',
+      // },
     },
   },
   {

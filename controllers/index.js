@@ -26,3 +26,5 @@ router.use('/api', apiRoutes);
 //     console.log()
 // }
 // aiStart()
+
+module.exports = router;
