@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
             userPassword: req.body.userPassword,
         });
 
-        // set up the session loggedInstatus set to true
+        // set up the session loggedIn status set to true
         req.session.save(() => {
             req.session.loggedIn = true;
             res.status(200).json(newUserData);
