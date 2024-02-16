@@ -1,7 +1,6 @@
 [
     {
         "userName": "Blog Host",
-        "email": "private@email.com",
         "userPassword": "password12345"
     }
 ]

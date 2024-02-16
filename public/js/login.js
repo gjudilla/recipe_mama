@@ -60,7 +60,7 @@ const logInHandler = async (event) => {
         //if reponse is OK then replace with actual route
         //XXXXXXXX need to replace XXXXXX
       if (response.ok) {
-        document.location.replace('/api/XXXXXXXXXXXX');
+        document.location.replace('/api/pantry');
       } else {
         alert('Failed to sign up.');
       }
