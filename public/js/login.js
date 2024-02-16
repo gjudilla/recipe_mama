@@ -18,7 +18,6 @@ const logInHandler = async (event) => {
 
         // response will return OK if userName and userPassword are found in the database & this will change page loacation to main page
 
-        //XXXXXXXX NEED TO REPLACE WITH ACTUAL ROUTE
         if (response.ok) {
             document.location.replace('/api/pantry');
         } else {
