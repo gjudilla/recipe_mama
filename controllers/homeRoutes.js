@@ -1,7 +1,6 @@
 // will change this. For now linking to index.html
 const router = require('express').Router();
 const path = require('path');
-var mysql = require('mysql');
 
 // This is the 'get' route 
 router.get('/', async (req, res) => {

@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet"/>
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
-    <!-- <link rel="stylesheet" href="/css/style2.css"> -->
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <script href="/models/Draggable.js"></script>
 
     <style>
         body {
@@ -20,13 +21,17 @@
             margin: 0;
         }
     
-        #container {
+    #container {
         display: flex;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        width: 100%;
     }
 
     #sortable-box {
         flex: 1;
         margin-right: 20px;
+        margin-bottom: 20px;
     }
 
     #sortable-list {
@@ -50,6 +55,20 @@
         border: 1px solid #ccc;
         padding: 20px;
         margin-bottom: 20px;
+        flex-basis: calc(50% - 20px);
+    }
+
+    @media only screen and (max-width: 768px) {
+        .stacked-box {
+            flex-basis: 100%;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        #sortable-box {
+            flex: 100%;
+            margin-right: 0;
+        }
     }
 </style>
 </head>
@@ -57,6 +76,8 @@
 <div id="container">
     <div id="sortable-box">
         <h2>Sortable List</h2>
+        <input type="text" id="new-item-input" placeholder="Add new item">
+        <button id="add-item-btn">Add</button>
         <ul id="sortable-list">
             <li class="sortable-item">Item 1</li>
             <li class="sortable-item">Item 2</li>
@@ -77,35 +98,68 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable/lib/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 <script>
-    const sortableList = new Draggable.Sortable(document.querySelectorAll('#sortable-list'), {
-        draggable: '.sortable-item',
-        delay: 200 // Delay in milliseconds before drag starts
+    // Make the list sortable
+    var sortableList = Sortable.create(document.getElementById('sortable-list'), {
+        animation: 150
     });
 
-    const firstBox = document.getElementById('box1');
+    // Get the first box
+    var firstBox = document.getElementById('box1');
 
-    // Add drop event listener to the first box
+    // Handle drop event for Box 1
     firstBox.addEventListener('drop', function(event) {
         event.preventDefault();
-        const data = event.dataTransfer.getData('text/plain');
-        const draggedItem = document.getElementById(data);
+        var data = event.dataTransfer.getData('text/plain');
+        var draggedItem = document.getElementById(data);
         firstBox.appendChild(draggedItem);
     });
 
-    // Prevent default behavior on dragover
+    // Prevent default behavior on dragover for Box 1
     firstBox.addEventListener('dragover', function(event) {
         event.preventDefault();
     });
 
+    // Handle drop event for sortable list
+    var sortableListContainer = document.getElementById('sortable-list');
+    sortableListContainer.addEventListener('drop', function(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData('text/plain');
+        var draggedItem = document.getElementById(data);
+        sortableListContainer.appendChild(draggedItem);
+    });
+
+    // Prevent default behavior on dragover for sortable list
+    sortableListContainer.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+
     // Set draggable attribute to true for all sortable items
-    const sortableItems = document.querySelectorAll('.sortable-item');
+    var sortableItems = document.querySelectorAll('.sortable-item');
     sortableItems.forEach(function(item) {
         item.draggable = true;
         item.addEventListener('dragstart', function(event) {
             event.dataTransfer.setData('text/plain', event.target.id);
         });
+    });
+
+    // Add item from input when clicking "Add" button
+    var addItemBtn = document.getElementById('add-item-btn');
+    addItemBtn.addEventListener('click', function() {
+        var newItemInput = document.getElementById('new-item-input');
+        var newItemText = newItemInput.value.trim();
+        if (newItemText !== '') {
+            var newListItem = document.createElement('li');
+            newListItem.textContent = newItemText;
+            newListItem.className = 'sortable-item';
+            newListItem.draggable = true; // Make the new list item draggable
+            newListItem.addEventListener('dragstart', function(event) {
+                event.dataTransfer.setData('text/plain', event.target.id);
+            });
+            document.getElementById('sortable-list').appendChild(newListItem);
+            newItemInput.value = ''; // Clear input after adding item
+        }
     });
 </script>
 </body>
