@@ -20,7 +20,7 @@ const logInHandler = async (event) => {
 
         //XXXXXXXX NEED TO REPLACE WITH ACTUAL ROUTE
         if (response.ok) {
-            document.location.replace('/api/XXXXXXXXX');
+            document.location.replace('/api/pantry');
         } else {
             alert('Failed to log in');
         }
