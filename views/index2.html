@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Blog</title>
+    <title>My Pantry</title>
 
     <!-- cdn nes.css minify version and google fonts PressStart2P font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet"/>
@@ -21,74 +21,92 @@
         }
     
         #container {
-            display: flex;
-        }
-    
-        #sortable-box {
-            flex: 1;
-            margin-right: 20px;
-        }
-    
-        #sortable-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            border: 1px solid #ccc;
-            min-height: 200px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-    
-        .sortable-item {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-            cursor: grab;
-        }
-    
-        #stacked-boxes {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-    
-        .stacked-box {
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-    </style>
-    </head>
-    <body>
-    <div id="container">
-        <div id="sortable-box">
-            <h2>Sortable List</h2>
-            <ul id="sortable-list">
-                <li class="sortable-item">Item 1</li>
-                <li class="sortable-item">Item 2</li>
-                <li class="sortable-item">Item 3</li>
-                <li class="sortable-item">Item 4</li>
-                <li class="sortable-item">Item 5</li>
-            </ul>
+        display: flex;
+    }
+
+    #sortable-box {
+        flex: 1;
+        margin-right: 20px;
+    }
+
+    #sortable-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ccc;
+        min-height: 200px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .sortable-item {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        cursor: grab;
+    }
+
+    .stacked-box {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div id="sortable-box">
+        <h2>Sortable List</h2>
+        <ul id="sortable-list">
+            <li class="sortable-item">Item 1</li>
+            <li class="sortable-item">Item 2</li>
+            <li class="sortable-item">Item 3</li>
+            <li class="sortable-item">Item 4</li>
+            <li class="sortable-item">Item 5</li>
+        </ul>
+    </div>
+    <div id="stacked-boxes">
+        <div class="stacked-box" id="box1">
+            <h2>Box 1</h2>
+            <p>This is box 1 content.</p>
         </div>
-        <div id="stacked-boxes">
-            <div class="stacked-box">
-                <h2>Box 1</h2>
-                <p>This is box 1 content.</p>
-            </div>
-            <div class="stacked-box">
-                <h2>Box 2</h2>
-                <p>This is box 2 content.</p>
-            </div>
+        <div class="stacked-box">
+            <h2>Box 2</h2>
+            <p>This is box 2 content.</p>
         </div>
     </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
-    <script>
-        // Make the list sortable
-        Sortable.create(document.getElementById('sortable-list'), {
-            animation: 150
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable/lib/index.js"></script>
+<script>
+    const sortableList = new Draggable.Sortable(document.querySelectorAll('#sortable-list'), {
+        draggable: '.sortable-item',
+        delay: 200 // Delay in milliseconds before drag starts
+    });
+
+    const firstBox = document.getElementById('box1');
+
+    // Add drop event listener to the first box
+    firstBox.addEventListener('drop', function(event) {
+        event.preventDefault();
+        const data = event.dataTransfer.getData('text/plain');
+        const draggedItem = document.getElementById(data);
+        firstBox.appendChild(draggedItem);
+    });
+
+    // Prevent default behavior on dragover
+    firstBox.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+
+    // Set draggable attribute to true for all sortable items
+    const sortableItems = document.querySelectorAll('.sortable-item');
+    sortableItems.forEach(function(item) {
+        item.draggable = true;
+        item.addEventListener('dragstart', function(event) {
+            event.dataTransfer.setData('text/plain', event.target.id);
         });
-    </script>
-    </body>
-    </html>
+    });
+</script>
+</body>
+</html>
