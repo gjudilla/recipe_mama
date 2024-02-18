@@ -13,12 +13,16 @@
     <script href="/models/Draggable.js"></script>
 
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        }
+    
+    #new-item-input #add-item-btn{
+        display: flex;
         }
     
     #container {
@@ -45,9 +49,18 @@
     }
 
     .sortable-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 10px;
         border-bottom: 1px solid #ccc;
         cursor: grab;
+    }
+
+    .sortable-item .delete-item {
+        cursor: pointer;
+        color: red;
+        margin-left: 10px;
     }
 
     .stacked-box {
@@ -58,6 +71,7 @@
         flex-basis: calc(50% - 20px);
     }
 
+    /* make page responsive */
     @media only screen and (max-width: 768px) {
         .stacked-box {
             flex-basis: 100%;
@@ -75,24 +89,20 @@
 <body>
 <div id="container">
     <div id="sortable-box">
-        <h2>Sortable List</h2>
-        <input type="text" id="new-item-input" placeholder="Add new item">
+        <h2>My Pantry</h2>
+        <input type="text" id="new-item-input" placeholder="Add to Pantry" style="width: 504px">
         <button id="add-item-btn">Add</button>
         <ul id="sortable-list">
-            <li class="sortable-item">Item 1</li>
-            <li class="sortable-item">Item 2</li>
-            <li class="sortable-item">Item 3</li>
-            <li class="sortable-item">Item 4</li>
-            <li class="sortable-item">Item 5</li>
+            <li class=""><span class="delete-item"></span></li>
         </ul>
     </div>
     <div id="stacked-boxes">
         <div class="stacked-box" id="box1">
-            <h2>Box 1</h2>
-            <p>This is box 1 content.</p>
+            <h2>Basket</h2>
+            <p>Add to Basket</p>
         </div>
         <div class="stacked-box">
-            <h2>Box 2</h2>
+            <h2>Recipes</h2>
             <p>This is box 2 content.</p>
         </div>
     </div>
@@ -100,6 +110,31 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 <script>
+    // Add item from input when clicking "Add" button
+    var addItemBtn = document.getElementById('add-item-btn');
+        addItemBtn.addEventListener('click', function() {
+        var newItemInput = document.getElementById('new-item-input');
+        var newItemText = newItemInput.value.trim();
+        if (newItemText !== '') {
+            var newListItem = document.createElement('li');
+            newListItem.textContent = newItemText;
+            newListItem.className = 'sortable-item';
+            var deleteButton = document.createElement('span');
+            deleteButton.textContent = '×';
+            deleteButton.className = 'delete-item';
+            deleteButton.addEventListener('click', function() {
+                newListItem.remove();
+            });
+            newListItem.appendChild(deleteButton);
+            newListItem.draggable = true; // Make the new list item draggable
+            newListItem.addEventListener('dragstart', function(event) {
+                event.dataTransfer.setData('text/plain', event.target.id);
+            });
+            document.getElementById('sortable-list').appendChild(newListItem);
+            newItemInput.value = ''; // Clear input after adding item
+        }
+    });
+
     // Make the list sortable
     var sortableList = Sortable.create(document.getElementById('sortable-list'), {
         animation: 150
@@ -108,7 +143,7 @@
     // Get the first box
     var firstBox = document.getElementById('box1');
 
-    // Handle drop event for Box 1
+    // Handle drop event for Basket
     firstBox.addEventListener('drop', function(event) {
         event.preventDefault();
         var data = event.dataTransfer.getData('text/plain');
@@ -142,24 +177,6 @@
         item.addEventListener('dragstart', function(event) {
             event.dataTransfer.setData('text/plain', event.target.id);
         });
-    });
-
-    // Add item from input when clicking "Add" button
-    var addItemBtn = document.getElementById('add-item-btn');
-    addItemBtn.addEventListener('click', function() {
-        var newItemInput = document.getElementById('new-item-input');
-        var newItemText = newItemInput.value.trim();
-        if (newItemText !== '') {
-            var newListItem = document.createElement('li');
-            newListItem.textContent = newItemText;
-            newListItem.className = 'sortable-item';
-            newListItem.draggable = true; // Make the new list item draggable
-            newListItem.addEventListener('dragstart', function(event) {
-                event.dataTransfer.setData('text/plain', event.target.id);
-            });
-            document.getElementById('sortable-list').appendChild(newListItem);
-            newItemInput.value = ''; // Clear input after adding item
-        }
     });
 </script>
 </body>
