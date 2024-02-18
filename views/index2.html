@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pantry</title>
+
+    <!-- cdn nes.css minify version and google fonts PressStart2P font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet"/>
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+
+
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        }
+    
+    #new-item-input #add-item-btn{
+        display: flex;
+        }
+    
+    #container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        width: 100%;
+    }
+
+    #sortable-box {
+        flex: 1;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    #sortable-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ccc;
+        min-height: 200px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .sortable-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        cursor: grab;
+    }
+
+    .sortable-item .delete-item {
+        cursor: pointer;
+        color: red;
+        margin-left: 10px;
+    }
+
+    .stacked-box {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+        flex-basis: calc(50% - 20px);
+    }
+
+    /* make page responsive */
+    @media only screen and (max-width: 768px) {
+        .stacked-box {
+            flex-basis: 100%;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        #sortable-box {
+            flex: 100%;
+            margin-right: 0;
+        }
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div id="sortable-box">
+        <h2>My Pantry</h2>
+        <input type="text" id="new-item-input" placeholder="Add to Pantry" style="width: 504px">
+        <button id="add-item-btn">Add</button>
+        <ul id="sortable-list">
+            <li class="draggable" draggable="true"><span class="delete-item"></span></li>
+        </ul>
+    </div>
+    <div id="stacked-boxes">
+        <div class="stacked-box" id="box1"> <span class="droppable"></span>
+            <h2>Basket</h2>
+            <p>Add to Basket</p>
+        </div>
+        <div class="stacked-box">
+            <h2>Recipes</h2>
+            <p>This is box 2 content.</p>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import {
+      Draggable,
+      Sortable,
+      Droppable,
+      Swappable,
+    } from 'https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs';
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.2.3/draggable.bundle.legacy.min.js"></script>
+
+
+<script>
+    // Add item from input when clicking "Add" button
+    var addItemBtn = document.getElementById('add-item-btn');
+        addItemBtn.addEventListener('click', function() {
+        var newItemInput = document.getElementById('new-item-input');
+        var newItemText = newItemInput.value.trim();
+        if (newItemText !== '') {
+            var newListItem = document.createElement('li');
+            newListItem.textContent = newItemText;
+            newListItem.className = 'sortable-item';
+            var deleteButton = document.createElement('span');
+            deleteButton.textContent = '×';
+            deleteButton.className = 'delete-item';
+            deleteButton.addEventListener('click', function() {
+                newListItem.remove();
+            });
+            newListItem.appendChild(deleteButton);
+            newListItem.draggable = true; // Make the new list item draggable
+            newListItem.addEventListener('dragstart', function(event) {
+                event.dataTransfer.setData('text/plain', event.target.id);
+            });
+            document.getElementById('sortable-list').appendChild(newListItem);
+            newItemInput.value = ''; // Clear input after adding item
+        }
+    });
+
+    // Make the list sortable
+    var sortableList = Sortable.create(document.getElementById('sortable-list'), {
+        animation: 150
+    });
+
+// Create drag and drop event 
+
+   var draggables = document.querySelectorAll ('.draggable')
+   var droppables = document.querySelectorAll ('.droppable')
+
+   draggables.forEach(draggable => {
+    draggable.addEventListener('dragstart', () => {
+    draggable.classList.add('dragging')
+    })
+
+    draggable.addEventListener('dragend', () => {
+    draggable.classList.remove('dragging')
+   })
+});
+
+    droppables.forEach(droppable => {
+        droppable.addEventListener('dragover', event => {
+            event.preventDefault()
+            const draggable = document.querySelector('.dragging')
+            droppable.appendChild(draggable)
+        })
+    })
+
+
+    // Make Box 1 a droppable container
+    var box1 = document.getElementById('box1');
+    new Draggable.Sortable(box1, {
+        draggable: '.sortable-item',
+        dropzone: '.droppable',
+        delay: 200 // Delay for smooth dragging
+    });
+</script>
+</body>
+</html>
