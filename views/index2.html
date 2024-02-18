@@ -9,8 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet"/>
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
-    <script href="/models/Draggable.js"></script>
 
     <style>
     body {
@@ -93,11 +91,11 @@
         <input type="text" id="new-item-input" placeholder="Add to Pantry" style="width: 504px">
         <button id="add-item-btn">Add</button>
         <ul id="sortable-list">
-            <li class=""><span class="delete-item"></span></li>
+            <li class="draggable" draggable="true"><span class="delete-item"></span></li>
         </ul>
     </div>
     <div id="stacked-boxes">
-        <div class="stacked-box" id="box1">
+        <div class="stacked-box" id="box1"> <span class="droppable"></span>
             <h2>Basket</h2>
             <p>Add to Basket</p>
         </div>
@@ -108,7 +106,18 @@
     </div>
 </div>
 
+<script type="module">
+    import {
+      Draggable,
+      Sortable,
+      Droppable,
+      Swappable,
+    } from 'https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs';
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.2.3/draggable.bundle.legacy.min.js"></script>
+
+
 <script>
     // Add item from input when clicking "Add" button
     var addItemBtn = document.getElementById('add-item-btn');
@@ -140,43 +149,36 @@
         animation: 150
     });
 
-    // Get the first box
-    var firstBox = document.getElementById('box1');
+// Create drag and drop event 
 
-    // Handle drop event for Basket
-    firstBox.addEventListener('drop', function(event) {
-        event.preventDefault();
-        var data = event.dataTransfer.getData('text/plain');
-        var draggedItem = document.getElementById(data);
-        firstBox.appendChild(draggedItem);
-    });
+   var draggables = document.querySelectorAll ('.draggable')
+   var droppables = document.querySelectorAll ('.droppable')
 
-    // Prevent default behavior on dragover for Box 1
-    firstBox.addEventListener('dragover', function(event) {
-        event.preventDefault();
-    });
+   draggables.forEach(draggable => {
+    draggable.addEventListener('dragstart', () => {
+    draggable.classList.add('dragging')
+    })
 
-    // Handle drop event for sortable list
-    var sortableListContainer = document.getElementById('sortable-list');
-    sortableListContainer.addEventListener('drop', function(event) {
-        event.preventDefault();
-        var data = event.dataTransfer.getData('text/plain');
-        var draggedItem = document.getElementById(data);
-        sortableListContainer.appendChild(draggedItem);
-    });
+    draggable.addEventListener('dragend', () => {
+    draggable.classList.remove('dragging')
+   })
+});
 
-    // Prevent default behavior on dragover for sortable list
-    sortableListContainer.addEventListener('dragover', function(event) {
-        event.preventDefault();
-    });
+    droppables.forEach(droppable => {
+        droppable.addEventListener('dragover', event => {
+            event.preventDefault()
+            const draggable = document.querySelector('.dragging')
+            droppable.appendChild(draggable)
+        })
+    })
 
-    // Set draggable attribute to true for all sortable items
-    var sortableItems = document.querySelectorAll('.sortable-item');
-    sortableItems.forEach(function(item) {
-        item.draggable = true;
-        item.addEventListener('dragstart', function(event) {
-            event.dataTransfer.setData('text/plain', event.target.id);
-        });
+
+    // Make Box 1 a droppable container
+    var box1 = document.getElementById('box1');
+    new Draggable.Sortable(box1, {
+        draggable: '.sortable-item',
+        dropzone: '.droppable',
+        delay: 200 // Delay for smooth dragging
     });
 </script>
 </body>
