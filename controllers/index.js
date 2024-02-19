@@ -71,5 +71,5 @@ getRecipefromOpenAI()
     console.error("Error fetching recipe:", error);
   });
 
-module.exports = router;
 
+module.exports = router;
