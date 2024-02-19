@@ -21,7 +21,7 @@ const logInHandler = async (event) => {
         if (response.ok) {
             document.location.replace('/api/pantry');
         } else {
-            alert('Failed to log in');
+            alert('Failed to log in. If you do not already have an account please put in a userName and password, then click the "Sign up" button. If you do have an account please enter your userName and password, then click "Log in" button.');
         }
     }
     // if (email && password) {
@@ -56,12 +56,11 @@ const logInHandler = async (event) => {
         headers: { 'Content-Type': 'application/json' },
       });
   
-        //if reponse is OK then replace with actual route
-        //XXXXXXXX need to replace XXXXXX
+        //if reponse is OK then replace url with api/pantry route to get to pantry page
       if (response.ok) {
         document.location.replace('/api/pantry');
       } else {
-        alert('Failed to sign up.');
+        alert('Failed to sign up. You need to provide a userName and a password, then click the "Sign up" button. If you already have an account use the log in button.');
       }
     }
   };
