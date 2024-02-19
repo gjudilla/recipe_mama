@@ -7,19 +7,11 @@ const axios = require("axios");
 
 const router = require("express").Router();
 
-
-// const apiRoutes = require('./api');
+const apiRoutes = require("./api");
 const homeRoutes = require("./homeRoutes.js");
 
 router.use("/", homeRoutes);
-// router.use('/api', apiRoutes);
-=======
-const apiRoutes = require('./api');
-const homeRoutes = require('./homeRoutes.js');
-
-router.use('/', homeRoutes);
-router.use('/api', apiRoutes);
-
+router.use("/api", apiRoutes);
 
 // module.exports = router;
 
@@ -40,7 +32,6 @@ router.use('/api', apiRoutes);
 //     console.log()
 // }
 // aiStart()
-
 
 // jordan's code
 async function getRecipefromOpenAI() {
@@ -94,6 +85,5 @@ getRecipefromOpenAI()
   .catch((error) => {
     console.error("Error fetching recipe:", error);
   });
-=======
-module.exports = router;
 
+module.exports = router;
