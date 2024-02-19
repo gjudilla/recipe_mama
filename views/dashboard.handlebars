@@ -1,37 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Dashboard</title>
-</head>
-
-<body>
-    <nav>
-        {{!-- {{#if loggedIn}}
-        <button id="logout" class="btn-no-style">Logout</button>
-        {{else}}
-        <a href="/login">Login</a>
-        {{/if}} --}}
-    </nav>
+        <!-- Recipes will be dynamically added here -->
     <h1>Recipe Dashboard</h1>
     <div id="recipeList">
-        <!-- Recipes will be dynamically added here -->
-    </div>
-
-    <!-- Handlebars Template -->
-    <script id="recipe-template" type="text/x-handlebars-template">
-        {{#each recipe}}
-        <div class="recipe">
+        {{#each recipes}}
+        <div>
             <h2>{{recipeTitle}}</h2>
             <p>{{ingredients}}</p>
             <p>{{instructions}}</p>
+            <p>{{postedBy}}</p>
 
         </div>
         {{/each}}
-    </script>
 
-</body>
 
-</html>
+    <!-- Handlebars Template -->
