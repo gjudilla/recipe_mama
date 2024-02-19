@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS users_db;
-CREATE DATABASE users_db;
-USE users_db;
+DROP DATABASE IF EXISTS blog_db;
+CREATE DATABASE blog_db;
+USE blog_db;
 
 CREATE TABLE `accounts` (
   `userID` INT(30) NOT NULL AUTO_INCREMENT PRIMARY KEY,
