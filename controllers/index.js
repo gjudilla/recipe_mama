@@ -6,17 +6,11 @@ const openai = new OpenAI(process.env.OPENAI_API_KEY);
 const axios = require("axios");
 
 const router = require("express").Router();
+const apiRoutes = require("./api");
+const homeRoutes = require("./homeRoutes.js");
 
-
-const apiRoutes = require('./api');
-const homeRoutes = require('./homeRoutes.js');
-
-router.use('/', homeRoutes);
-router.use('/api', apiRoutes);
-
-
-
-
+router.use("/", homeRoutes);
+router.use("/api", apiRoutes);
 
 // jordan's code
 async function getRecipefromOpenAI() {
@@ -58,10 +52,16 @@ async function getRecipefromOpenAI() {
 
 getRecipefromOpenAI()
   .then((recipeContent) => {
-    // console.log("Recipe from OpenAI:", recipeContent);
     const splitContent = recipeContent.split("\n\n");
+    let [dishTitle, ingredients, directions] = splitContent;
 
-    const [dishTitle, ingredients, directions, closingLine] = splitContent;
+    let directionsArray = directions.split("\n");
+
+    let closingLine = directionsArray.pop();
+    closingLine = closingLine.replace(/^\d+\.\s*/, "");
+
+    directions = directionsArray.join("\n");
+
     console.log("Dish Title:", dishTitle);
     console.log("Ingredients:", ingredients);
     console.log("Directions:", directions);
@@ -70,6 +70,5 @@ getRecipefromOpenAI()
   .catch((error) => {
     console.error("Error fetching recipe:", error);
   });
-
 
 module.exports = router;
