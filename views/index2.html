@@ -69,6 +69,18 @@
         flex-basis: calc(50% - 20px);
     }
 
+    .logout-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 8px 16px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
     /* make page responsive */
     @media only screen and (max-width: 768px) {
         .stacked-box {
@@ -86,6 +98,7 @@
 </head>
 <body>
 <div id="container">
+    <button class="logout-button" id="logout-button">Logout</button>
     <div id="sortable-box">
         <h2>My Pantry</h2>
         <input type="text" id="new-item-input" placeholder="Add to Pantry" style="width: 504px">
@@ -98,10 +111,11 @@
         <div class="stacked-box" id="box1"> <span class="droppable"></span>
             <h2>Basket</h2>
             <p>Add to Basket</p>
+            <button id="recipe-button">Give Me a Recipe</button>
         </div>
         <div class="stacked-box">
-            <h2>Recipes</h2>
-            <p>This is box 2 content.</p>
+            <h2>Here's Your Recipe!</h2>
+            <button id="save-button">Save My Recipe</button>
         </div>
     </div>
 </div>
@@ -180,6 +194,7 @@
         dropzone: '.droppable',
         delay: 200 // Delay for smooth dragging
     });
+    
 </script>
 </body>
 </html>
