@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sortable List</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.css">
+<style>
+  body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+  }
+  .left-section {
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+  .basket {
+    background-color: #e6e6e6;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .delete-button {
+    cursor: pointer;
+    color: red;
+    margin-left: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="left-section">
+  <h2>Sortable List</h2>
+
+  <ul id="sortable-list" class="sortable-list">
+    <!-- List items can be added dynamically here -->
+  </ul>
+
+  <input type="text" id="input-item" placeholder="Type item here">
+  <button onclick="addItem()">Add Item</button>
+</div>
+
+<div class="right-section">
+  <div class="basket" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <h3>Basket</h3>
+    <ul id="basket" class="sortable-list">
+      <!-- Basket items can be added dynamically here -->
+    </ul>
+  </div>
+  <div>
+    <h3>Recipes</h3>
+    <ul id="recipes" class="sortable-list">
+      <!-- Recipes items can be added dynamically here -->
+    </ul>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+<script>
+  const sortableList = document.getElementById('sortable-list');
+  const basketList = document.getElementById('basket');
+
+  // Initialize Sortable for the main list
+  const sortable = new Sortable(sortableList, {
+    animation: 150,
+    ghostClass: 'sortable-ghost'
+  });
+
+  function addItem() {
+    const inputItem = document.getElementById('input-item');
+    const itemText = inputItem.value.trim();
+
+    if (itemText !== '') {
+      const li = createListItem(itemText);
+      sortableList.appendChild(li); // Add to main list by default
+      inputItem.value = ''; // Clear input
+    }
+  }
+
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData('text/plain');
+    const li = createBasketItem(data);
+    basketList.appendChild(li);
+  }
+
+  function createListItem(text) {
+    const li = document.createElement('li');
+    li.textContent = text;
+
+    const deleteButton = document.createElement('span');
+    deleteButton.textContent = 'x';
+    deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', function() {
+      li.remove();
+    });
+
+    li.appendChild(deleteButton);
+    return li;
+  }
+
+  function createBasketItem(text) {
+    const li = document.createElement('li');
+    li.textContent = text;
+    return li;
+  }
+</script>
+
+</body>
+</html>

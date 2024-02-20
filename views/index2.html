@@ -17,6 +17,7 @@
         align-items: center;
         height: 100vh;
         margin: 0;
+        background-color: #212529
         }
     
     #new-item-input #add-item-btn{
@@ -34,6 +35,10 @@
         flex: 1;
         margin-right: 20px;
         margin-bottom: 20px;
+    }
+
+    #sortable-box h2 {
+        color: #fff;
     }
 
     #sortable-list {
@@ -62,7 +67,7 @@
     }
 
     .stacked-box {
-        background-color: #f0f0f0;
+        background-color: #ccc;
         border: 1px solid #ccc;
         padding: 20px;
         margin-bottom: 20px;
@@ -79,6 +84,10 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
+    }
+
+    li {
+        color: #fff;
     }
 
     /* make page responsive */
@@ -98,24 +107,25 @@
 </head>
 <body>
 <div id="container">
-    <button class="logout-button" id="logout-button">Logout</button>
+    <button class="logout-button nes-btn" id="logout-button">Logout</button>
     <div id="sortable-box">
         <h2>My Pantry</h2>
         <input type="text" id="new-item-input" placeholder="Add to Pantry" style="width: 504px">
-        <button id="add-item-btn">Add</button>
+        <button class="nes-btn" id="add-item-btn">Add</button>
         <ul id="sortable-list">
-            <li class="draggable" draggable="true"><span class="delete-item"></span></li>
+            <!-- <li class="draggable" id="sortable-item" draggable="true"><span class="delete-item"></span></li> -->
+            <!-- List items added dynamically -->
         </ul>
     </div>
     <div id="stacked-boxes">
-        <div class="stacked-box" id="box1"> <span class="droppable"></span>
+        <div class="stacked-box" id="box1" ondrop="drop(event)" ondragover="allowDrop(event)"> <span class="droppable"></span>
             <h2>Basket</h2>
-            <p>Add to Basket</p>
-            <button id="recipe-button">Give Me a Recipe</button>
+            <p>Drop Ingredients Here</p>
+            <button class="nes-btn" id="recipe-button">Give Me a Recipe</button>
         </div>
-        <div class="stacked-box">
+        <div class="stacked-box" id="box2">
             <h2>Here's Your Recipe!</h2>
-            <button id="save-button">Save My Recipe</button>
+            <button class="nes-btn" id="save-button">Save My Recipe</button>
         </div>
     </div>
 </div>
@@ -142,6 +152,7 @@
             var newListItem = document.createElement('li');
             newListItem.textContent = newItemText;
             newListItem.className = 'sortable-item';
+            newListItem.id = 'sortable-item';
             var deleteButton = document.createElement('span');
             deleteButton.textContent = '×';
             deleteButton.className = 'delete-item';
@@ -164,37 +175,72 @@
     });
 
 // Create drag and drop event 
+const dragList = document.getElementById('sortable-list');
+const basketList = document.getElementById('box1');
 
-   var draggables = document.querySelectorAll ('.draggable')
-   var droppables = document.querySelectorAll ('.droppable')
+function allowDrop(event) {
+    event.preventDefault();
+  }
 
-   draggables.forEach(draggable => {
-    draggable.addEventListener('dragstart', () => {
-    draggable.classList.add('dragging')
-    })
+  function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData('text/plain');
+    const li = document.createElement('li');
+    li.innerHTML = data;
+    basketList.appendChild(li);
+  }
 
-    draggable.addEventListener('dragend', () => {
-    draggable.classList.remove('dragging')
-   })
-});
+//    var draggables = document.querySelectorAll ('.sortable-item')
+//    var droppables = document.querySelectorAll ('.droppable')
 
-    droppables.forEach(droppable => {
-        droppable.addEventListener('dragover', event => {
-            event.preventDefault()
-            const draggable = document.querySelector('.dragging')
-            droppable.appendChild(draggable)
-        })
-    })
+//    draggables.forEach(draggable => {
+//     sortable-item.addEventListener('dragstart', () => {
+//         console.log('drag start')
+//     })
+// })
+//     draggable.classList.add('dragging')
+//     })
+
+//     draggable.addEventListener('dragend', () => {
+//     draggable.classList.remove('dragging')
+//    })
+// });
+
+//     droppables.forEach(droppable => {
+//         droppable.addEventListener('dragover', event => {
+//             event.preventDefault()
+//             const draggable = document.querySelector('.dragging')
+//             droppable.appendChild(draggable)
+//         })
+//     })
 
 
-    // Make Box 1 a droppable container
-    var box1 = document.getElementById('box1');
-    new Draggable.Sortable(box1, {
-        draggable: '.sortable-item',
-        dropzone: '.droppable',
-        delay: 200 // Delay for smooth dragging
-    });
+    // // Make Box 1 a droppable container
+    // var box1 = document.getElementById('box1');
+    // new Draggable.Sortable(box1, {
+    //     draggable: '.sortable-item',
+    //     dropzone: '.droppable',
+    //     delay: 200 // Delay for smooth dragging
+    // });
+
+
+
     
+    // const list = document.getElementById('sortable-item');
+    // const dropzone = document.getElementById('box1');
+
+    // list.addEventListener('dragstart', function(event) {
+    //     console.log(event)
+    // })
+
+    // dropzone.addEventListener('dragover', function(event) {
+    //     event.preventDefault()
+    // })
+    
+    // dropzone.addEventListener('drop', function(event) {
+    //     dropzone.prepend(sortable-item)
+    // })
+
 </script>
 </body>
 </html>
