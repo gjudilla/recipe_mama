@@ -28,7 +28,7 @@ Recipe.init(
       allowNull: false,
       references: {
         model: 'user',
-        key: 'userName',
+        key: 'id',
       },
     },
   },
