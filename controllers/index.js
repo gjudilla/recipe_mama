@@ -13,21 +13,21 @@ router.use("/", homeRoutes);
 router.use("/api", apiRoutes);
 
 // jordan's code
-document.getElementById('add-ingredient').addEventListener('click', function() {
+// document.getElementById('add-ingredient').addEventListener('click', function() {
   // Add new ingredient input field
-  const newField = document.createElement('input');
-  newField.setAttribute('type', 'text');
-  newField.setAttribute('class', 'ingredient-input');
-  newField.setAttribute('placeholder', 'Ingredient');
-  newField.required = true;
-  document.getElementById('ingredient-fields').appendChild(newField);
-});
+//   const newField = document.createElement('input');
+//   newField.setAttribute('type', 'text');
+//   newField.setAttribute('class', 'ingredient-input');
+//   newField.setAttribute('placeholder', 'Ingredient');
+//   newField.required = true;
+//   document.getElementById('ingredient-fields').appendChild(newField);
+// });
 
-document.getElementById('ingredient-form').addEventListener('submit', function(event) {
-  event.preventDefault();
+// document.getElementById('ingredient-form').addEventListener('submit', function(event) {
+//   event.preventDefault();
 
-const ingredients = Array.from(document.getElementsByClassName('ingredient-input')).map(input => input.value);
-const contentString = ingredients.join(', ');
+// const ingredients = Array.from(document.getElementsByClassName('ingredient-input')).map(input => input.value);
+// const contentString = ingredients.join(', ');
 
 async function getRecipefromOpenAI() {
   const data = {
@@ -66,7 +66,7 @@ async function getRecipefromOpenAI() {
     throw error;
   }
 }
-});
+// });
 
 getRecipefromOpenAI()
   .then((recipeContent) => {
