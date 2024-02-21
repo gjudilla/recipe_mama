@@ -26,10 +26,10 @@ Recipe.init(
     postedBy: {
       type: DataTypes.STRING,
       allowNull: false,
-      // references: {
-      //   model: 'user',
-      //   key: 'userName',
-      // },
+      references: {
+        model: 'user',
+        key: 'userName',
+      },
     },
   },
   {
