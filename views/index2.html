@@ -121,6 +121,9 @@
         <div class="stacked-box" id="box1" ondrop="drop(event)" ondragover="allowDrop(event)"> <span class="droppable"></span>
             <h2>Basket</h2>
             <p>Drop Ingredients Here</p>
+            <ul id="basket" class="sortable-list">
+                <!-- Basket items can be added dynamically here -->
+            </ul>
             <button class="nes-btn" id="recipe-button">Give Me a Recipe</button>
         </div>
         <div class="stacked-box" id="box2">
@@ -153,6 +156,8 @@
             newListItem.textContent = newItemText;
             newListItem.className = 'sortable-item';
             newListItem.id = 'sortable-item';
+
+        // delete button
             var deleteButton = document.createElement('span');
             deleteButton.textContent = '×';
             deleteButton.className = 'delete-item';
