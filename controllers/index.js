@@ -6,19 +6,29 @@ const openai = new OpenAI(process.env.OPENAI_API_KEY);
 const axios = require("axios");
 
 const router = require("express").Router();
+const apiRoutes = require("./api");
+const homeRoutes = require("./homeRoutes.js");
 
-
-const apiRoutes = require('./api');
-const homeRoutes = require('./homeRoutes.js');
-
-router.use('/', homeRoutes);
-router.use('/api', apiRoutes);
-
-
-
-
+router.use("/", homeRoutes);
+router.use("/api", apiRoutes);
 
 // jordan's code
+document.getElementById('add-ingredient').addEventListener('click', function() {
+  // Add new ingredient input field
+  const newField = document.createElement('input');
+  newField.setAttribute('type', 'text');
+  newField.setAttribute('class', 'ingredient-input');
+  newField.setAttribute('placeholder', 'Ingredient');
+  newField.required = true;
+  document.getElementById('ingredient-fields').appendChild(newField);
+});
+
+document.getElementById('ingredient-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+const ingredients = Array.from(document.getElementsByClassName('ingredient-input')).map(input => input.value);
+const contentString = ingredients.join(', ');
+
 async function getRecipefromOpenAI() {
   const data = {
     model: "gpt-3.5-turbo",
@@ -29,13 +39,14 @@ async function getRecipefromOpenAI() {
       },
       {
         role: "user",
-        content:
-          "Provide one recipe based off of these ingredients, provide needed quantities for each ingredient, and explain how to make the dish: tomatoes, chicken, parmesan. Only give me the name of the dish, the ingredient list, and directions.", // need to add template literal variables for the ingredients
+        content:`Provide one recipe based off of these ingredients, provide needed quantities for each ingredient, and explain how to make the dish: ${contentString}. Only give me the name of the dish, the ingredient list, and directions.`, // need to add template literal variables for the ingredients
       },
     ],
     max_tokens: 500,
     temperature: 1,
   };
+
+
 
   try {
     const response = await axios.post(
@@ -55,13 +66,20 @@ async function getRecipefromOpenAI() {
     throw error;
   }
 }
+});
 
 getRecipefromOpenAI()
   .then((recipeContent) => {
-    // console.log("Recipe from OpenAI:", recipeContent);
     const splitContent = recipeContent.split("\n\n");
+    let [dishTitle, ingredients, directions] = splitContent;
 
-    const [dishTitle, ingredients, directions, closingLine] = splitContent;
+    let directionsArray = directions.split("\n");
+
+    let closingLine = directionsArray.pop();
+    closingLine = closingLine.replace(/^\d+\.\s*/, "");
+
+    directions = directionsArray.join("\n");
+
     console.log("Dish Title:", dishTitle);
     console.log("Ingredients:", ingredients);
     console.log("Directions:", directions);
@@ -70,6 +88,5 @@ getRecipefromOpenAI()
   .catch((error) => {
     console.error("Error fetching recipe:", error);
   });
-
 
 module.exports = router;

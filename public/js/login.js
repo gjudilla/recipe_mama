@@ -1,5 +1,6 @@
 // if login button clicked logInHandler is called
 const logInHandler = async (event) => {
+  console.log('working');
     event.preventDefault();
     // DOM variables
     const userName = document.querySelector('#userName')
@@ -7,7 +8,7 @@ const logInHandler = async (event) => {
     const userPassword = document.querySelector('#userPassword').value.trim();
     // const email = document.querySelector('#email-login').value.trim();
     // const password = document.querySelector('#password-login').value.trim();
-  
+  alert('userName: ' + userName, )
     // if a userName and userPassword are submitted a fetch POST is made to the api/users/login to all the userName and userPassord entred to be compared to the database
     if (userName && userPassword) {
         const response = await fetch('api/users/login', {
@@ -66,7 +67,7 @@ const logInHandler = async (event) => {
   };
 document
     .querySelector('#logInBtn')
-    .addEventListenter('click', logInHandler);
+    .addEventListener('click', logInHandler);
 
 document
     .querySelector('#signUpBtn')
