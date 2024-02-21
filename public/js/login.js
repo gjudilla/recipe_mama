@@ -67,7 +67,7 @@ const logInHandler = async (event) => {
   };
 document
     .querySelector('#logInBtn')
-    .addEventListenter('click', logInHandler);
+    .addEventListener('click', logInHandler);
 
 document
     .querySelector('#signUpBtn')
