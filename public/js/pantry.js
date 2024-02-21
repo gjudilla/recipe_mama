@@ -1,4 +1,3 @@
-
 // Add item from input when clicking "Add" button
     var addItemBtn = document.getElementById('add-item-btn');
         addItemBtn.addEventListener('click', function() {
