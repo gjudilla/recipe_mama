@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.4.4",
+    "draggable": "^4.2.0",
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
     "express-session": "^1.18.0",

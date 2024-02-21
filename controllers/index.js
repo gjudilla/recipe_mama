@@ -27,7 +27,7 @@ router.use("/api", apiRoutes);
 //   event.preventDefault();
 
 // const ingredients = Array.from(document.getElementsByClassName('ingredient-input')).map(input => input.value);
-// const contentString = ingredients.join(', ');
+let contentString;
 
 async function getRecipefromOpenAI() {
   const data = {
