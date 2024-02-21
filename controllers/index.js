@@ -14,7 +14,7 @@ router.use("/api", apiRoutes);
 
 // jordan's code
 // document.getElementById('add-ingredient').addEventListener('click', function() {
-//   // Add new ingredient input field
+  // Add new ingredient input field
 //   const newField = document.createElement('input');
 //   newField.setAttribute('type', 'text');
 //   newField.setAttribute('class', 'ingredient-input');
@@ -65,7 +65,8 @@ async function getRecipefromOpenAI() {
     console.error("Error making OpenAI API request:", error);
     throw error;
   }
-};
+}
+// });
 
 getRecipefromOpenAI()
   .then((recipeContent) => {
