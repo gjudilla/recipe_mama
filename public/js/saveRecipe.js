@@ -14,6 +14,7 @@ router.get('/dashboard', (req, res) => {
     }
 });
 
+// DOM variables
 let recipeName = document.querySelector('#recipeName').value.trim();
 let ingredients = document.querySelector('#ingredients').value.trim();
 let instructions = document.querySelector('#instructions').value.trim();
@@ -23,7 +24,6 @@ let username = req.session.username;
 const addRecipeHandler = async (event) => {
     event.preventDefault();
   
-    // DOM variables
 
 
   
