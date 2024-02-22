@@ -6,12 +6,11 @@ const logInHandler = async (event) => {
     const userName = document.querySelector('#userName')
     .value.trim();
     const userPassword = document.querySelector('#userPassword').value.trim();
-    // const email = document.querySelector('#email-login').value.trim();
-    // const password = document.querySelector('#password-login').value.trim();
-  alert('userName: ' + userName, )
+   
+  alert('userName: ' + userName + ' userPassword: ' + userPassword )
     // if a userName and userPassword are submitted a fetch POST is made to the api/users/login to all the userName and userPassord entred to be compared to the database
     if (userName && userPassword) {
-        const response = await fetch('api/users/login', {
+        const response = await fetch('/api/users/login', {
             method: 'POST',
             body: JSON.stringify({ userName, userPassword }), 
             headers:  { 'Content-Type': 'application/json' },
@@ -25,19 +24,6 @@ const logInHandler = async (event) => {
             alert('Failed to log in. If you do not already have an account please put in a userName and password, then click the "Sign up" button. If you do have an account please enter your userName and password, then click "Log in" button.');
         }
     }
-    // if (email && password) {
-    //   const response = await fetch('/api/users/login', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ email, password }),
-    //     headers: { 'Content-Type': 'application/json' },
-    //   });
-  
-    //   if (response.ok) {
-    //     document.location.replace('/');
-    //   } else {
-    //     alert('Failed to log in.');
-    //   }
-    // }
   };
 
   // if signup button is clicked the signup handler fxn is called
