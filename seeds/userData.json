@@ -1,22 +1,22 @@
 [
     {
-        "userName": "1 Blog Host",
+        "userName": "1BlogHost",
         "userPassword": "password12345"
     },
     {
-        "userName": "2 Blog Host",
+        "userName": "2BlogHost",
         "userPassword": "password12345"
     },
     {
-        "userName": "3 Blog Host",
+        "userName": "3BlogHost",
         "userPassword": "password12345"
     },
     {
-        "userName": "4 Blog Host",
+        "userName": "4BlogHost",
         "userPassword": "password12345"
     },
     {
-        "userName": "5 Blog Host",
+        "userName": "5BlogHost",
         "userPassword": "password12345"
     }
 ]

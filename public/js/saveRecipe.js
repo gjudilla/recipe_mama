@@ -14,22 +14,22 @@ router.get('/dashboard', (req, res) => {
     }
 });
 
-// DOM variables
-let recipeName = document.querySelector('#recipeName').value.trim();
-let ingredients = document.querySelector('#ingredients').value.trim();
-let instructions = document.querySelector('#instructions').value.trim();
-let closingLine = document.querySelector('#closingRemark').value.trim();
-let username = req.session.username;
 
 const addRecipeHandler = async (event) => {
     event.preventDefault();
-  
-
+    
+    
+    // DOM variables
+    let recipeName = document.querySelector('#recipeName').value.trim();
+    let ingredients = document.querySelector('#ingredients').value.trim();
+    let instructions = document.querySelector('#instructions').value.trim();
+    let closingLine = document.querySelector('#closingRemark').value.trim();
+    let username = req.session.username;
 
   
   
     // if recipeName and ingredients submitted to add recipe
-    if (recipeName && ingredients && instructions && closingLine) {
+    if (recipeName && ingredients && instructions && closingLine && username) {
       const response = await fetch('/api/recipes', {
         method: 'POST',
         body: JSON.stringify({ recipeName, ingredients, instructions, closingLine, username }),

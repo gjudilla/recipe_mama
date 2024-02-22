@@ -4,18 +4,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Museum</title>
+  <title>Recipe Mama</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap"
+    rel="stylesheet" />
+  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+
   <link rel="stylesheet" type="text/css" href="/css/jass.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
+<style>
+  .logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .pantry-button {
+    position: absolute;
+    top: 10px;
+    right: 150px;
+    padding: 8px 16px;
+    background-color: #514d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
 
 <body>
   <header>
     <h1>Recipe Mama</h1>
   </header>
-  <nav>
-    <a href="/">Home</a>
-  </nav>
   <main>
     <aside>
       <h2></h2>
@@ -25,8 +51,10 @@
     </div>
   </main>
   {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
+  <button class="logout-button nes-btn" id="logout-button">Logout</button>
+  <a href="/api/pantry" class="pantry-button nes-btn" id="pantry-button">Pantry</a>
   {{/if}}
+  <script src="/js/logout.js"></script>
 </body>
 
 </html>
