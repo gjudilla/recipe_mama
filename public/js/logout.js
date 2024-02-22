@@ -6,7 +6,7 @@ const logOutHandler = async () => {
     });
   
     if (response.ok) {
-
+      console.log('XXXXXX');
       document.location.replace('/');
 
     } else {
