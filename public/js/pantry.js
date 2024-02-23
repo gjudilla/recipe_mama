@@ -33,7 +33,7 @@ var sortableList = Sortable.create(document.getElementById('sortable-list'), {
 
 // Create drag and drop event 
 const dragList = document.getElementById('sortable-list');
-const basketList = document.getElementById('box1');
+const basketList = document.getElementById('basket');
 
 function allowDrop(event) {
     event.preventDefault();
@@ -44,7 +44,15 @@ function allowDrop(event) {
     const data = event.dataTransfer.getData('text/plain');
     const li = document.createElement('li');
     li.innerHTML = data;
+
+// delete button for basket item
+    var deleteButton = document.createElement('span');
+    deleteButton.textContent = '×';
+    deleteButton.className = 'delete-item';
+    deleteButton.addEventListener('click', function() {
+        li.remove();
+    });
+    li.appendChild(deleteButton);
+
     basketList.appendChild(li);
-  }
-
-
+}

@@ -25,13 +25,14 @@
         #new-item-input #add-item-btn {
             display: flex;
         }
-
-        #container {
-            display: flex;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            width: 100%;
-        }
+    
+    #container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        width: 100%;
+        position: relative; 
+    }
 
         #sortable-box {
             flex: 1;
@@ -111,13 +112,14 @@
             }
         }
 
-        @media only screen and (max-width: 600px) {
-            #sortable-box {
-                flex: 100%;
-                margin-right: 0;
-            }
+    @media only screen and (max-width: 600px) {
+        #sortable-box {
+            flex: 100%;
+            margin-right: 0;
         }
-    </style>
+    }
+
+</style>
 </head>
 
 <body>
