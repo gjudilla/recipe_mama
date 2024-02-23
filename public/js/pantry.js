@@ -46,5 +46,21 @@ function allowDrop(event) {
     li.innerHTML = data;
     basketList.appendChild(li);
   }
+  
+
+  document.getElementById('recipe-button').addEventListener('click', function() {
+    // Add new ingredient input field
+    event.preventDefault();
+    const newField = document.createElement('input');
+    newField.setAttribute('class', 'ingredient-input');
+
+    const ingredients = Array.from(document.getElementsByClassName('ingredient-input')).map(input => input.value);
+    contentString = ingredients.join(',');
+    console.log(contentString);
+
+  });
+  
+    
 
 
+  
