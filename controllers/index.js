@@ -51,7 +51,7 @@ let contentString;
     console.error("Error making OpenAI API request:", error);
     throw error;
   }
-}
+
 
 
 // getRecipefromOpenAI()
