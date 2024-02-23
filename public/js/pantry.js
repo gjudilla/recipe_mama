@@ -44,28 +44,15 @@ function allowDrop(event) {
     const data = event.dataTransfer.getData('text/plain');
     const li = document.createElement('li');
     li.innerHTML = data;
+
+// delete button for basket item
+    var deleteButton = document.createElement('span');
+    deleteButton.textContent = '×';
+    deleteButton.className = 'delete-item';
+    deleteButton.addEventListener('click', function() {
+        li.remove();
+    });
+    li.appendChild(deleteButton);
+
     basketList.appendChild(li);
-  }
-  
-
-  document.getElementById('recipe-button').addEventListener('click', function() {
-    // Add new ingredient input field
-    event.preventDefault();
-    const newField = document.createElement('input');
-    newField.setAttribute('class', 'ingredient-input');
-
-    const ingredients = Array.from(document.getElementsByClassName('ingredient-input')).map(input => input.value);
-    contentString = ingredients.join(',');
-    console.log(contentString);
-
-  });
-  
-    
-
-  function createListItem(text) {
-    const li = document.createElement('li');
-    li.textContent = text;
-
-  }
-
-  
+}

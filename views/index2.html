@@ -19,6 +19,10 @@
         margin: 0;
         background-color: #212529
         }
+
+    input {
+        margin-top: 20px;
+    }
     
     #new-item-input #add-item-btn{
         display: flex;
@@ -29,6 +33,7 @@
         flex-wrap: wrap;
         max-width: 1000px;
         width: 100%;
+        position: relative; 
     }
 
     #sortable-box {
@@ -76,8 +81,8 @@
 
     .logout-button {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 0px;
+        right: 0px;
         padding: 8px 16px;
         background-color: #f44336;
         color: white;
@@ -103,6 +108,7 @@
             margin-right: 0;
         }
     }
+
 </style>
 </head>
 <body>
@@ -110,7 +116,7 @@
     <button class="logout-button nes-btn" id="logout-button">Logout</button>
     <div id="sortable-box">
         <h2>My Pantry</h2>
-        <input type="text" id="new-item-input" placeholder="Add to Pantry" style="width: 504px">
+        <input class= "nes-input is-dark" type="text" id="new-item-input" placeholder="Add to Pantry" style="width: 504px">
         <button class="nes-btn" id="add-item-btn">Add</button>
         <ul id="sortable-list">
             <!-- <li class="draggable" id="sortable-item" draggable="true"><span class="delete-item"></span></li> -->
