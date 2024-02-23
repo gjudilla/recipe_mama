@@ -45,28 +45,15 @@ function drop(event) {
     const data = event.dataTransfer.getData('text/plain');
     const li = document.createElement('li');
     li.innerHTML = data;
+
+// delete button for basket item
+    var deleteButton = document.createElement('span');
+    deleteButton.textContent = '×';
+    deleteButton.className = 'delete-item';
+    deleteButton.addEventListener('click', function() {
+        li.remove();
+    });
+    li.appendChild(deleteButton);
+
     basketList.appendChild(li);
 }
-
-function createListItem(text) {
-    const li = document.createElement('li');
-    li.textContent = text;
-
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const recipeButton = document.getElementById('recipe-button')
-    if (recipeButton) {
-        recipeButton.addEventListener('click', () => {
-            const rawIngredients = Array.from(document.getElementsByClassName('sortable-item'))
-            const ingredients = rawIngredients.map(item => item.innerText.split('\n')[0]);
-            console.log(ingredients);
-            console.log(rawIngredients);
-            contentString = ingredients.join(', ');
-            console.log(contentString);
-            
-        })
-    }
-});
-
