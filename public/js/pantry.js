@@ -33,7 +33,7 @@ var sortableList = Sortable.create(document.getElementById('sortable-list'), {
 
 // Create drag and drop event 
 const dragList = document.getElementById('sortable-list');
-const basketList = document.getElementById('box1');
+const basketList = document.getElementById('basket');
 
 function allowDrop(event) {
     event.preventDefault();
@@ -62,5 +62,10 @@ function allowDrop(event) {
   
     
 
+  function createListItem(text) {
+    const li = document.createElement('li');
+    li.textContent = text;
+
+  }
 
   
