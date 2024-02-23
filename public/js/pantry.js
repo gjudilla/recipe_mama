@@ -1,3 +1,4 @@
+
 // Add item from input when clicking "Add" button
     var addItemBtn = document.getElementById('add-item-btn');
         addItemBtn.addEventListener('click', function() {
@@ -37,19 +38,35 @@ const basketList = document.getElementById('basket');
 
 function allowDrop(event) {
     event.preventDefault();
-  }
+}
 
-  function drop(event) {
+function drop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData('text/plain');
     const li = document.createElement('li');
     li.innerHTML = data;
     basketList.appendChild(li);
-  }
+}
 
-  function createListItem(text) {
+function createListItem(text) {
     const li = document.createElement('li');
     li.textContent = text;
 
-  }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const recipeButton = document.getElementById('recipe-button')
+    if (recipeButton) {
+        recipeButton.addEventListener('click', () => {
+            const rawIngredients = Array.from(document.getElementsByClassName('sortable-item'))
+            const ingredients = rawIngredients.map(item => item.innerText.split('\n')[0]);
+            console.log(ingredients);
+            console.log(rawIngredients);
+            contentString = ingredients.join(', ');
+            console.log(contentString);
+            
+        })
+    }
+});
 
