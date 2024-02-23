@@ -12,21 +12,7 @@ const homeRoutes = require("./homeRoutes.js");
 router.use("/", homeRoutes);
 router.use("/api", apiRoutes);
 
-// jordan's code
-// document.getElementById('add-ingredient').addEventListener('click', function() {
-  // Add new ingredient input field
-//   const newField = document.createElement('input');
-//   newField.setAttribute('type', 'text');
-//   newField.setAttribute('class', 'ingredient-input');
-//   newField.setAttribute('placeholder', 'Ingredient');
-//   newField.required = true;
-//   document.getElementById('ingredient-fields').appendChild(newField);
-// });
 
-// document.getElementById('ingredient-form').addEventListener('submit', function(event) {
-//   event.preventDefault();
-
-// const ingredients = Array.from(document.getElementsByClassName('ingredient-input')).map(input => input.value);
 let contentString;
 
 // async function getRecipefromOpenAI() {
@@ -48,25 +34,25 @@ let contentString;
 
 
 
-  // try {
-  //   const response = await axios.post(
-  //     "https://api.openai.com/v1/chat/completions",
-  //     data,
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   );
-  //   const recipeContent = response.data.choices[0].message.content;
-  //   return recipeContent;
-//   } catch (error) {
-//     console.error("Error making OpenAI API request:", error);
-//     throw error;
-//   }
-// }
-// });
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const recipeContent = response.data.choices[0].message.content;
+    return recipeContent;
+  } catch (error) {
+    console.error("Error making OpenAI API request:", error);
+    throw error;
+  }
+}
+
 
 // getRecipefromOpenAI()
 //   .then((recipeContent) => {
