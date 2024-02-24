@@ -15,22 +15,22 @@ router.use("/api", apiRoutes);
 
 let contentString;
 
-async function getRecipefromOpenAI() {
-  const data = {
-    model: "gpt-3.5-turbo",
-    messages: [
-      {
-        role: "system",
-        content: "You are a helpful assistant.",
-      },
-      {
-        role: "user",
-        content:`Provide one recipe based off of these ingredients, provide needed quantities for each ingredient, and explain how to make the dish: ${contentString}. Only give me the name of the dish, the ingredient list, and directions.`, // need to add template literal variables for the ingredients
-      },
-    ],
-    max_tokens: 500,
-    temperature: 1,
-  };
+// async function getRecipefromOpenAI() {
+  // const data = {
+  //   model: "gpt-3.5-turbo",
+  //   messages: [
+  //     {
+  //       role: "system",
+  //       content: "You are a helpful assistant.",
+  //     },
+  //     {
+  //       role: "user",
+  //       content:`Provide one recipe based off of these ingredients, provide needed quantities for each ingredient, and explain how to make the dish: ${contentString}. Only give me the name of the dish, the ingredient list, and directions.`, // need to add template literal variables for the ingredients
+  //     },
+  //   ],
+  //   max_tokens: 500,
+  //   temperature: 1,
+  // };
 
 
 
@@ -51,28 +51,28 @@ async function getRecipefromOpenAI() {
     console.error("Error making OpenAI API request:", error);
     throw error;
   }
-}
 
 
-getRecipefromOpenAI()
-  .then((recipeContent) => {
-    const splitContent = recipeContent.split("\n\n");
-    let [dishTitle, ingredients, directions] = splitContent;
 
-    let directionsArray = directions.split("\n");
+// getRecipefromOpenAI()
+//   .then((recipeContent) => {
+//     const splitContent = recipeContent.split("\n\n");
+//     let [dishTitle, ingredients, directions] = splitContent;
 
-    let closingLine = directionsArray.pop();
-    closingLine = closingLine.replace(/^\d+\.\s*/, "");
+//     let directionsArray = directions.split("\n");
 
-    directions = directionsArray.join("\n");
+//     let closingLine = directionsArray.pop();
+//     closingLine = closingLine.replace(/^\d+\.\s*/, "");
 
-    console.log("Dish Title:", dishTitle);
-    console.log("Ingredients:", ingredients);
-    console.log("Directions:", directions);
-    console.log("Closing Line:", closingLine);
-  })
-  .catch((error) => {
-    console.error("Error fetching recipe:", error);
-  });
+//     directions = directionsArray.join("\n");
+
+//     console.log("Dish Title:", dishTitle);
+//     console.log("Ingredients:", ingredients);
+//     console.log("Directions:", directions);
+//     console.log("Closing Line:", closingLine);
+//   })
+//   .catch((error) => {
+//     console.error("Error fetching recipe:", error);
+//   });
 
 module.exports = router;
