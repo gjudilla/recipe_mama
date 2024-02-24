@@ -1,24 +1,21 @@
-const router = require('express').Router();
-const path = require('path');
+// Access the API Key
+require("dotenv").config({ path: "../.env" });
 const OpenAI = require("openai-api");
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 // Axios library
 const axios = require("axios");
-// This is the 'get' route 
-router.get('/', async (req, res) => {
-  // Here, index.html2 is rendered
-  res.sendFile(path.join(__dirname, '../../views/index2.html'));
-});
 
-router.post('/', async (req, res) => {
-  console.log(req.body);
-  const response = await getRecipefromOpenAI(req.body.ingredients);
-  console.log(response);
-  // Here, index.html2 is rendered
-  res.json(response);
-});
+const router = require("express").Router();
+const apiRoutes = require("./api");
+const homeRoutes = require("./homeRoutes.js");
 
-async function getRecipefromOpenAI(contentString) {
+router.use("/", homeRoutes);
+router.use("/api", apiRoutes);
+
+
+let contentString;
+
+async function getRecipefromOpenAI() {
   const data = {
     model: "gpt-3.5-turbo",
     messages: [
@@ -56,4 +53,26 @@ async function getRecipefromOpenAI(contentString) {
   }
 }
 
-module.exports = router
+
+getRecipefromOpenAI()
+  .then((recipeContent) => {
+    const splitContent = recipeContent.split("\n\n");
+    let [dishTitle, ingredients, directions] = splitContent;
+
+    let directionsArray = directions.split("\n");
+
+    let closingLine = directionsArray.pop();
+    closingLine = closingLine.replace(/^\d+\.\s*/, "");
+
+    directions = directionsArray.join("\n");
+
+    console.log("Dish Title:", dishTitle);
+    console.log("Ingredients:", ingredients);
+    console.log("Directions:", directions);
+    console.log("Closing Line:", closingLine);
+  })
+  .catch((error) => {
+    console.error("Error fetching recipe:", error);
+  });
+
+module.exports = router;
