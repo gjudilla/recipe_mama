@@ -67,12 +67,13 @@ This website is designed as
 ---
 
 ## Author Info
+### This website was desinged and implemented by:
 
-###
-###
-###
-###
 ### Jeffrey Nelson
+### William Keyes
+### Nicholas Padovese
+### Gabrielle Judilla
+### Jordan Ferrario
 
 
 <!-- * [Portfolio](https://jeffreydne.github.io/Jeff-Nelson-Portfolio/)
@@ -82,7 +83,9 @@ This website is designed as
 ---
 ## Credits
 
-    We want to thank the Chat GPT API for generating the recipes based off input ingredients. We also want to thank the UC Berkeley Web Development Bootcamp. We used the boilerplate config/connection.js in its entirety, and borrowed heavily from various other UCB class activities. Some boilerplate files were used in their nearly complete form, others were used with significant modification. Finally, we copied open source badges from Vedant Chainani at the website https://dev.to/envoy_/150-badges-for-github-pnk#contents 
+    We utilized the Chat GPT API for generating the recipes based off the ingredients imput by the user,  Nes.CSS for styling, and we used Dragable for drag an ddrop functionality. In addition, we used the boilerplate config/connection.js in its entirety, and borrowed heavily from various other UCB class activities. Finally, we copied open source badges from Vedant Chainani at the website https://dev.to/envoy_/150-badges-for-github-pnk#contents 
+
+    Thank you to Marcelo Gachet for helping us to refine and debug our project, as well as to Sam Jones and Gunjan Bhargava for help throughout the class.
  
 ---
 
