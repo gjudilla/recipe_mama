@@ -1,155 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Pantry</title>
 
     <!-- cdn nes.css minify version and google fonts PressStart2P font -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap"
+        rel="stylesheet" />
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 
 
     <style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #212529
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #212529
         }
 
-    input {
-        margin-top: 20px;
-    }
-    
-    #new-item-input #add-item-btn{
-        display: flex;
+        input {
+            margin-top: 20px;
         }
-    
-    #container {
-        display: flex;
-        flex-wrap: wrap;
-        max-width: 1000px;
-        width: 100%;
-        position: relative; 
-    }
 
-    #sortable-box {
-        flex: 1;
-        margin-right: 20px;
-        margin-bottom: 20px;
-    }
-
-    #sortable-box h2 {
-        color: #fff;
-    }
-
-    #sortable-list {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        border: 1px solid #ccc;
-        min-height: 200px;
-        max-height: 400px;
-        overflow-y: auto;
-    }
-
-    .sortable-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
-        cursor: grab;
-    }
-
-    .sortable-item .delete-item {
-        cursor: pointer;
-        color: red;
-        margin-left: 10px;
-    }
-
-    .stacked-box {
-        background-color: #ccc;
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin-bottom: 20px;
-        flex-basis: calc(50% - 20px);
-    }
-
-    .logout-button {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        padding: 8px 16px;
-        background-color: #f44336;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    li {
-        color: #fff;
-    }
-
-    /* make page responsive */
-    @media only screen and (max-width: 768px) {
-        .stacked-box {
-            flex-basis: 100%;
+        #new-item-input #add-item-btn {
+            display: flex;
         }
-    }
 
-    @media only screen and (max-width: 600px) {
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+        }
+
         #sortable-box {
-            flex: 100%;
-            margin-right: 0;
+            flex: 1;
+            margin-right: 20px;
+            margin-bottom: 20px;
         }
-    }
 
-</style>
+        #sortable-box h2 {
+            color: #fff;
+        }
+
+        #sortable-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .sortable-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: grab;
+        }
+
+        .sortable-item .delete-item {
+            cursor: pointer;
+            color: red;
+            margin-left: 10px;
+        }
+
+        .stacked-box {
+            background-color: #ccc;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            flex-basis: calc(50% - 20px);
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            padding: 8px 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .dashboard-button {
+            position: absolute;
+            top: 0px;
+            right: 150px;
+            padding: 8px 16px;
+            background-color: #ccc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        li {
+            color: #fff;
+        }
+
+        /* make page responsive */
+        @media only screen and (max-width: 768px) {
+            .stacked-box {
+                flex-basis: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            #sortable-box {
+                flex: 100%;
+                margin-right: 0;
+            }
+        };
+    </style>
 </head>
-<body>
-<div id="container">
-    <button class="logout-button nes-btn" id="logout-button">Logout</button>
-    <div id="sortable-box">
-        <h2>My Pantry</h2>
-        <input class= "nes-input is-dark" type="text" id="new-item-input" placeholder="Add to Pantry" style="width: 504px">
-        <button class="nes-btn" id="add-item-btn">Add</button>
-        <ul id="sortable-list">
-            <!-- <li class="draggable" id="sortable-item" draggable="true"><span class="delete-item"></span></li> -->
-            <!-- List items added dynamically -->
-        </ul>
-    </div>
-    <div id="stacked-boxes">
-        <div class="stacked-box basket" ondrop="drop(event)" ondragover="allowDrop(event)"> <span class="droppable"></span>
-            <h2>Basket</h2>
-            <p>Drop Ingredients Here</p>
-            <ul id="basket" class="sortable-list">
-                <!-- Basket items can be added dynamically here -->
-            </ul>
-            <button class="nes-btn" id="recipe-button">Give Me a Recipe</button>
-        </div>
-        <div class="stacked-box" id="box2">
-            <h2>Here's Your Recipe!</h2>
-            <button class="nes-btn" id="save-button">Save My Recipe</button>
-        </div>
-    </div>
-</div>
-<script type="module">
-    import {
-      Draggable,
-      Sortable,
-      Droppable,
-      Swappable,
-    } from 'https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs';
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.2.3/draggable.bundle.legacy.min.js"></script>
 
-<script src="/js/logout.js"></script>
-<script src="/js/pantry.js"></script>
+<body>
+    <div id="container">
+        <a href="/api/dashboard" class="dashboard-button nes-btn" id="dashboard-button">Dashboard</a>
+        <button class="logout-button nes-btn" id="logout-button">Logout</button>
+        <div id="sortable-box">
+            <h2>My Pantry</h2>
+            <input class="nes-input is-dark" type="text" id="new-item-input" placeholder="Add to Pantry"
+                style="width: 504px">
+            <button class="nes-btn" id="add-item-btn">Add</button>
+            <ul id="sortable-list">
+                <!-- <li class="draggable" id="sortable-item" draggable="true"><span class="delete-item"></span></li> -->
+                <!-- List items added dynamically -->
+            </ul>
+        </div>
+        <div id="stacked-boxes">
+            <div class="stacked-box" id="box1" ondrop="drop(event)" ondragover="allowDrop(event)"> <span
+                    class="droppable"></span>
+                <h2>Basket</h2>
+                <p>Drop Ingredients Here</p>
+                <ul id="basket" class="sortable-list">
+                    <!-- Basket items can be added dynamically here -->
+                </ul>
+                <button class="nes-btn" id="recipe-button">Give Me a Recipe</button>
+            </div>
+            <div class="stacked-box" id="box2">
+                <h2>Here's Your Recipe!</h2>
+                <button class="nes-btn" id="save-button">Save My Recipe</button>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import {
+            Draggable,
+            Sortable,
+            Droppable,
+            Swappable,
+        } from 'https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs';
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.2.3/draggable.bundle.legacy.min.js"></script>
+
+    <script src="/js/logout.js"></script>
+    <script src="/js/pantry.js"></script>
 </body>
+
 </html>
