@@ -13,7 +13,11 @@
 | NPM | [https://www.npmjs.com](https://www.npmjs.com)   |
 | Heroku | [https://www.heroku.com/home](https://www.heroku.com/home)   |
 | Nes.css | [https://nostalgic-css.github.io/NES.css/](https://nostalgic-css.github.io/NES.css/)   |
-| draggable | [https://shopify.github.io/draggable/](https://shopify.github.io/draggable/)   |
+| draggable | [https://perchance.org/ai-pixel-art-generator](https://perchance.org/ai-pixel-art-generator)   |
+| Perchance | [https://shopify.github.io/draggable/](https://shopify.github.io/draggable/)   |
+| Remove.bg | [https://www.remove.bg/](https://www.remove.bg/)   |
+
+
 
 ---
 
@@ -32,7 +36,7 @@
 
 ## Description
 
-[Visit the depolyed site]()
+[Visit the deployed site]()
 
 [Visit the Github repository](https://github.com/gjudilla/recipe_mama)
 
@@ -40,15 +44,15 @@ This application allows a user to input the ingredients they have available for 
 
 ---
 
-## Instalation
+## Installation
 
-This application requires mulitple npm modules.  You will need to type "npm i" to install these. You can run this app by typing "npm start". 
+This application requires multiple npm modules.  You will need to type "npm i" into the command line to install these. You can run this app by typing "npm start". In addition, the SQL database can be run by typing "mysql -u <username> -p", followed by "source ./db/schema.sql;" into the terminal.
 
 ---
 
 ## Usage
 
-This website is designed to be a recipe generator. The user can input the items they have available to use in their pantry. They can then drag a subset of those ingredients into the basket for any given dish they want to make, and with the click of a button a recipe will be generated with exact amounts, and specific directions to cook the dish. They can then save those recipes that they want to keep for another time.
+This website is designed to be a recipe generator. The user can input the items they have available to use in their pantry. They can then drag a subset of those ingredients into the basket for any given dish they want to make. Any ingredients that the user wishes to remove from their ingredients list or basket can be deleted. With the click of a button a recipe will be generated with exact amounts and specific directions to cook the dish. They can then save those recipes that they want to keep for another time.
 
 
 ![ alt text](./assets/recipe-mama-screenshot.png)
@@ -68,7 +72,7 @@ This website is designed to be a recipe generator. The user can input the items 
 ---
 ## Credits
 
-    We utilized the Chat GPT API for generating the recipes based off the ingredients imput by the user,  Nes.CSS for styling, and we used Dragable for drag & drop functionality. In addition, we used the boilerplate config/connection.js in its entirety, and borrowed heavily from various other UCB class activities. Finally, we copied open source badges from Vedant Chainani at the website https://dev.to/envoy_/150-badges-for-github-pnk#contents 
+    We utilized the Chat GPT API for generating the recipes based off the ingredients imput by the user,  Nes.CSS for styling, and we used Draggable for drag & drop functionality. Our "Recipe Mama" logo was created with Perchance, an AI art generator and the background was removed with Remove.bg to render a PNG file. In addition, we used the boilerplate config/connection.js in its entirety, and borrowed heavily from various other UCB class activities. Finally, we copied open source badges from Vedant Chainani at the website https://dev.to/envoy_/150-badges-for-github-pnk#contents 
 
     Thank you to Marcelo Gachet for helping us to refine and debug our project, as well as to Sam Jones and Gunjan Bhargava for help throughout the class.
  
