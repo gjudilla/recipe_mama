@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
   const response = await getRecipefromOpenAI(req.body.ingredients);
-  // console.log(response);
+  console.log(response);
 
   try {
     const splitContent = response.split("\n\n");

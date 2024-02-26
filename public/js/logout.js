@@ -15,5 +15,5 @@ const logOutHandler = async () => {
   }
   
   document
-    .querySelector('#logout-button')
+    .querySelector('#logout-button, #logout-button-dash')
     .addEventListener('click', logOutHandler)

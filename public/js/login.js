@@ -7,7 +7,7 @@ const logInHandler = async (event) => {
     .value.trim();
     const userPassword = document.querySelector('#userPassword').value.trim();
    
-  alert('userName: ' + userName + ' userPassword: ' + userPassword )
+  // alert('userName: ' + userName + ' userPassword: ' + userPassword )
     // if a userName and userPassword are submitted a fetch POST is made to the api/users/login to all the userName and userPassord entred to be compared to the database
     if (userName && userPassword) {
         const response = await fetch('/api/users/login', {

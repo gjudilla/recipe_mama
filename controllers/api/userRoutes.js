@@ -52,16 +52,15 @@ router.post('/login', async (req, res) => {
         //if the entered userName exists, and entered password matches the stored password, then set up the sessions loggedIn variable and set to true
         req.session.save(() => {
             req.session.loggedIn = true;
-
-            res
-                .status(200)
-                .json({ user: userData, message: 'You are now logged in!'});
-        });
-        req.session.save(() => {
-            req.session.user_id = userData.id; 
-            req.session.username = userData.username; 
+            req.session.userName = userData.userName; 
             res.status(200).json(userData);
-          });
+       
+        });
+        // req.session.save(() => {
+        //     req.session.user_id = userData.id; 
+        //     req.session.username = userData.username; 
+        //     res.status(200).json(userData);
+        //   });
     } catch (err) {
         console.log('there was a server error: ' + err);
         res.status(500).json(err);
