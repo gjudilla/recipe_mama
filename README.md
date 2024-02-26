@@ -13,8 +13,8 @@
 | NPM | [https://www.npmjs.com](https://www.npmjs.com)   |
 | Heroku | [https://www.heroku.com/home](https://www.heroku.com/home)   |
 | Nes.css | [https://nostalgic-css.github.io/NES.css/](https://nostalgic-css.github.io/NES.css/)   |
-| draggable | [https://perchance.org/ai-pixel-art-generator](https://perchance.org/ai-pixel-art-generator)   |
-| Perchance | [https://shopify.github.io/draggable/](https://shopify.github.io/draggable/)   |
+| Perchance | [https://perchance.org/ai-pixel-art-generator](https://perchance.org/ai-pixel-art-generator)   |
+| Draggable | [https://shopify.github.io/draggable/](https://shopify.github.io/draggable/)   |
 | Remove.bg | [https://www.remove.bg/](https://www.remove.bg/)   |
 
 
