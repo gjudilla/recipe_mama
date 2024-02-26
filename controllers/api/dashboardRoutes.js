@@ -32,16 +32,16 @@ router.get('/myrecipes', async (req, res) => {
     //   }
 
       const dbRecipeData = await Recipe.findAll({
-          where: {
-              
+          where: {              
               postedBy: userName
           },
-          include: [
-              {
-                  model: User,
+          order: [['id', 'DESC']]
+        //   include: [
+        //       {
+        //           model: User,
 
-              },
-          ],
+        //       },
+        //   ],
       });
       
       const recipes = dbRecipeData.map((recipe) => recipe.get({ plain: true }));
