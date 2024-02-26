@@ -36,7 +36,7 @@
 
 ## Description
 
-[Visit the deployed site]()
+[Visit the deployed site](https://recipe-mama-0252d29f9673.herokuapp.com/)
 
 [Visit the Github repository](https://github.com/gjudilla/recipe_mama)
 
