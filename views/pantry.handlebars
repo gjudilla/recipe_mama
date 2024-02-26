@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pantry</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <a href="/api/dashboard" class="dashboard-button nes-btn" id="dashboard-button">Dashboard</a>
+        <button class="logout-button nes-btn" id="logout-button">Logout</button>
+        <div id="sortable-box">
+            <h2>My Pantry</h2>
+            <input class="nes-input is-dark" type="text" id="new-item-input" placeholder="Add to Pantry"
+                style="width: 504px">
+            <button class="nes-btn" id="add-item-btn">Add</button>
+            <ul id="sortable-list">
+                <!-- <li class="draggable" id="sortable-item" draggable="true"><span class="delete-item"></span></li> -->
+                <!-- List items added dynamically -->
+            </ul>
+        </div>
+        <div id="stacked-boxes">
+            <div class="stacked-box" id="box1" ondrop="drop(event)" ondragover="allowDrop(event)"> <span
+                    class="droppable"></span>
+                <h2>Basket</h2>
+                <p>Drop Ingredients Here</p>
+                <ul id="basket" class="sortable-list">
+                    <!-- Basket items can be added dynamically here -->
+                </ul>
+                <button class="nes-btn" id="recipe-button">Give Me a Recipe</button>
+            </div>
+            <div class="stacked-box" id="box2">
+                <h2>Here's Your Recipe!</h2>
+                <div id="recipe-div">
+                    
+                </div>
+                <button class="nes-btn" id="save-button">Save My Recipe</button>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import {
+            Draggable,
+            Sortable,
+            Droppable,
+            Swappable,
+        } from 'https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs';
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.2.3/draggable.bundle.legacy.min.js"></script>
+
+    <script src="/js/logout.js"></script>
+    <script src="/js/pantry.js"></script>
+</body>
+
+</html>

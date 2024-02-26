@@ -1,22 +1,63 @@
 const router = require('express').Router();
 const path = require('path');
+const { Recipe } = require('../../models');
 const OpenAI = require("openai-api");
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 // Axios library
 const axios = require("axios");
+const sequelize = require('../../config/connection');
 // This is the 'get' route 
 router.get('/', async (req, res) => {
-  // Here, index.html2 is rendered
-  res.sendFile(path.join(__dirname, '../../views/index2.html'));
+
+  res.render('pantry');
 });
+
 
 router.post('/', async (req, res) => {
   console.log(req.body);
   const response = await getRecipefromOpenAI(req.body.ingredients);
-  console.log(response);
-  // Here, index.html2 is rendered
-  res.json(response);
+  // console.log(response);
+
+  try {
+    const splitContent = response.split('\n\n');
+    let [recipeTitle, ingredients, instructions] = splitContent;
+
+    let postedBy = req.session.userName;
+    const newRecipeData = await Recipe.create({
+      recipeTitle,
+      ingredients,
+      instructions,
+      postedBy
+    });
+    // resolve(newRecipeData)
+    // res.redirect('/api/dashboard');
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+  
 });
+
+// router.get('/fetchHighestEntry', async (req, res) => {
+//   try {
+//     // Define the SQL query to fetch the entry with the highest ID
+//     const sqlQuery = 'SELECT * FROM blog_db.recipe ORDER BY id DESC LIMIT 1';
+
+//     // Execute the SQL query
+//     const results = await sequelize.query(sqlQuery);
+//     // return results
+
+//     // Respond with the result
+//     console.log(results[0]);
+//     //   .recipe_title);
+//     // console.log(results[0].ingredients);
+//     // console.log(results[0].instructions); // Assuming only one result is expected
+//   } catch (error) {
+//     console.error('Error executing SQL query:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
 
 async function getRecipefromOpenAI(contentString) {
   const data = {
@@ -28,7 +69,7 @@ async function getRecipefromOpenAI(contentString) {
       },
       {
         role: "user",
-        content:`Provide one recipe based off of these ingredients, provide needed quantities for each ingredient, and explain how to make the dish: ${contentString}. Only give me the name of the dish, the ingredient list, and directions.`, // need to add template literal variables for the ingredients
+        content: `Provide one recipe based off of these ingredients, provide needed quantities for each ingredient, and explain how to make the dish: ${contentString}. Only give me the name of the dish, the ingredient list, and directions.`, // need to add template literal variables for the ingredients
       },
     ],
     max_tokens: 500,

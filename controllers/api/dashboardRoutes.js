@@ -5,13 +5,8 @@ const { User, Recipe } = require('../../models');
 router.get('/', async (req, res) => {
     try {
         const dbRecipeData = await Recipe.findAll({
-            include: [
-                {
-                    model:User,
-                    
-                },
-            ],
-        });
+            order: [['id', 'DESC']] // Sort by 'id' column in descending order
+          });
         
     const recipes = dbRecipeData.map((recipe) =>
     recipe.get({ plain: true })

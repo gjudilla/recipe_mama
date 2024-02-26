@@ -55,27 +55,98 @@ li.textContent = text;
 
 
 document.addEventListener('DOMContentLoaded', () => {
-const recipeButton = document.getElementById('recipe-button')
-if (recipeButton) {
-recipeButton.addEventListener('click', () => {
-    const rawIngredients = Array.from(document.getElementsByClassName('sortable-item'))
-    const ingredients = rawIngredients.map(item => item.innerText.split('\n')[0]);
-    console.log(ingredients);
-    console.log(rawIngredients);
-    contentString = ingredients.join(', ');
-    console.log(contentString);
-    fetch('/api/pantry',{
-        method:'POST',
-        body:JSON.stringify({
-            ingredients:contentString
-        }),
-        headers: {
+    const recipeButton = document.getElementById('recipe-button');
+    if (recipeButton) {
+      recipeButton.addEventListener('click', async () => {
+        const rawIngredients = Array.from(document.getElementsByClassName('sortable-item'));
+        const ingredients = rawIngredients.map(item => item.innerText.split('\n')[0]);
+        console.log(ingredients);
+        console.log(rawIngredients);
+        const contentString = ingredients.join(', ');
+        console.log(contentString);
+        var obj;
+          fetch('/api/pantry', {
+          method: 'POST',
+          body: JSON.stringify({
+            ingredients: contentString
+          }),
+          headers: {
             'Content-Type': 'application/json',
           },
-    })
-    .then(response => {
-        console.log(response);
-    })
-})
-}
-});
+        })
+        
+
+        //     console.log("its worked" + recipeTitle);
+        //   if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        //   }
+        //   return response.json();
+
+        // .then(data => {
+        // })
+        //   fetch('/api/pantry/fetchHighestEntry') // Fetch the highest entry after posting to /api/pantry
+        // .then(data => {
+        //          const recipeContainer = document.getElementById('recipe-div');
+        //          recipeContainer.innerHTML = '';  
+        //          const recipeTitle = document.createElement('h2');
+        //          recipeTitle.textContent = data.recipe_title;
+  
+        //          const recipeIngredients = document.createElement('p');
+        //          recipeIngredients.textContent = data.ingredients;
+  
+        //          const recipeInstructions = document.createElement('p');
+        //          recipeInstructions.textContent = data.instructions;
+      
+        //          recipeContainer.appendChild(recipeTitle);
+        //          recipeContainer.appendChild(recipeIngredients);
+        //          recipeContainer.appendChild(recipeInstructions);
+        // })
+        // .then(response => {
+        //   if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        //   }
+        //   return response.json();
+        // })
+        // .then(data => {
+        //   console.log(data);
+          
+        //   const recipeEl = document.getElementById('recipe-div');
+        //     recipeEl.innerText = JSON.stringify(data);
+   
+        // .catch(error => console.error('Error:', error));
+      });
+    }
+  });
+
+
+
+// .then(response => response.json()) // Parse the JSON response
+// .then(data => {
+    
+//     const recipeContainer = document.getElementById('recipe-container');
+    
+//     recipeContainer.innerHTML = '';
+    
+//     const recipeTitle = document.createElement('h2');
+//     recipeTitle.textContent = data.recipeTitle;
+
+//     const recipeIngredients = document.createElement('ol');
+//     data.ingredients.forEach(ingredients => {
+//         const ingredientItem = document.createElement('li');
+//         ingredientItem.textContent = ingredients
+//         recipeIngredients.appendChild(ingredientItem);
+//     });
+    
+//     const recipeInstructions = document.createElement('ol');
+//     data.instructions.forEach(instruction => {
+//         const instructionItem = document.createElement('li');
+//         instructionItem.textContent = instruction;
+//         recipeInstructions.appendChild(instructionItem);
+//     });
+    
+//     recipeContainer.appendChild(recipeTitle);
+//     recipeContainer.appendChild(recipeInstructions);
+// })
+// .catch(error => {
+//     console.error('Error:', error);
+// });

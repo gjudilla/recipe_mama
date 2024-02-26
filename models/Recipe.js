@@ -24,12 +24,8 @@ Recipe.init(
       allowNull: false,
     },
     postedBy: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
     },
   },
   {

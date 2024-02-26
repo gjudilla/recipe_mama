@@ -15,22 +15,22 @@ router.use("/api", apiRoutes);
 
 let contentString;
 
-// async function getRecipefromOpenAI() {
-  // const data = {
-  //   model: "gpt-3.5-turbo",
-  //   messages: [
-  //     {
-  //       role: "system",
-  //       content: "You are a helpful assistant.",
-  //     },
-  //     {
-  //       role: "user",
-  //       content:`Provide one recipe based off of these ingredients, provide needed quantities for each ingredient, and explain how to make the dish: ${contentString}. Only give me the name of the dish, the ingredient list, and directions.`, // need to add template literal variables for the ingredients
-  //     },
-  //   ],
-  //   max_tokens: 500,
-  //   temperature: 1,
-  // };
+async function getRecipefromOpenAI() {
+  const data = {
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content: "You are a helpful assistant.",
+      },
+      {
+        role: "user",
+        content:`Provide one recipe based off of these ingredients, provide needed quantities for each ingredient, and explain how to make the dish: ${contentString}. Only give me the name of the dish, the ingredient list, and directions.`, // need to add template literal variables for the ingredients
+      },
+    ],
+    max_tokens: 500,
+    temperature: 1,
+  };
 
 
 
@@ -52,7 +52,7 @@ let contentString;
     throw error;
   }
 
-
+}
 
 // getRecipefromOpenAI()
 //   .then((recipeContent) => {

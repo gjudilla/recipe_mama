@@ -1,39 +1,237 @@
 body {
   font-family: 'Press Start 2P' Helvetica, Verdana, sans-serif;
   background-color: #aeaeae;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  margin: 0;
+  /* background-color: #212529 */
 }
 
 header {
-    margin-top: 100px;
-    background-color: #aeaeae;
-    color: #212529;
-  }
-  h1 {
-    text-align: center;
-    font-size: 50px;
-  }
+  margin-top: 100px;
+  background-color: #aeaeae;
+  /* color: #212529; */
+}
 
-  main {
-   font-size: 12px;
+h1 {
+  text-align: center;
+  font-size: 50px;
+  padding: 0 5px;
+  margin-bottom: 50px;
+}
+
+main {
+  font-size: 12px;
+}
+
+img {
+  margin-left: 65px;
+}
+.narrowBox {
+  width: 30%;
+  margin: 30px auto;
+}
+
+.login{
+  justify-content: center;
+  align-items: center;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  /* width: 30%; */
+}
+
+.handlebar {
+  height: 10px;
+  
+}
+.nes-btn {
+  margin: 0 20;
+}
+
+span {
+  padding: 10px;
+}
+
+
+input {
+  margin-top: 20px;
+}
+
+#new-item-input #add-item-btn {
+  display: flex;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  width: 100%;
+  position:relative
+}
+
+
+#sortable-box {
+  flex: 1;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+#sortable-box h2 {
+  color: #fff;
+}
+
+#sortable-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: #212529;
+}
+
+.sortable-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: grab;
+}
+
+.sortable-item .delete-item {
+  cursor: pointer;
+  color: red;
+  margin-left: 10px;
+}
+
+.stacked-box {
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  flex-basis: calc(50% - 20px);
+}
+
+.logout-button {
+  position: absolute;
+  top: -200px;
+  right: 0px;
+  padding: 8px 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard-button {
+  position: absolute;
+  top: -200px;
+  right: 120px;
+  padding: 8px 16px;
+  background-color: #ccc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+  .pantry-button {
+    position: absolute;
+    top: 10px;
+    right: 150px;
+    padding: 8px 16px;
+    background-color: #514d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .my-recipes-button {
+    position: absolute;
+    top: 10px;
+    right: 150px;
+    padding: 8px 16px;
+    background-color: #514d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
   
-  .narrowBox {
-    width: 30%;
-    margin: 30px auto ;
+  .pantry-button-dash {
+    position: absolute;
+    top: 10px;
+    right: 110px;
+    padding: 8px 16px;
+    background-color: #514d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
-  .btnContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-    /* width: 30%; */
+  .my-recipes-button-dash {
+    position: absolute;
+    top: 10px;
+    right: 220px;
+    padding: 8px 16px;
+    background-color: #514d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
 
-  .nes-btn {
-    margin: 0 20;
-  }
-  span {
-    padding: 10px;
+  .logout-button-dash {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
 
-  
+  .dashboard-button-dash {
+    position: absolute;
+    top: 10px;
+    right: 380px;
+    padding: 8px 16px;
+    background-color: #ccc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+li {
+  color: #fff;
+}
+
+/* make page responsive */
+@media only screen and (max-width: 768px) {
+  .stacked-box {
+    flex-basis: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #sortable-box {
+    flex: 100%;
+    margin-right: 0;
+  }
+}
+
+;

@@ -1,16 +1,20 @@
-
-        <!-- Recipes will be dynamically added here -->
+<!-- Recipes will be dynamically added here -->
 <h1>Recipe Dashboard</h1>
-    <div id="recipeList">
-        {{#each recipes}}
-        <div>
-            <h2>{{recipeTitle}}</h2>
-            <p>{{ingredients}}</p>
-            <p>{{instructions}}</p>
-            <p>Posted by: {{postedBy}}</p>
+<div id="recipeList">
+    {{#each recipes}}
+    <div>
+        <h2>{{recipeTitle}}</h2>
+        <p>{{ingredients}}</p>
+        <p>{{instructions}}</p>
+        <p>Posted by: {{postedBy}}</p>
 
-        </div>
-        {{/each}}
+    </div>
+    {{/each}}
 
+    <a href="/api/dashboard/myrecipes" class="my-recipes-button-dash nes-btn" id="my-recipes-button-dash">My Recipes</a>
+    <button class="logout-button-dash nes-btn" id="logout-button-dash">Logout</button>
+    <a href="/api/pantry" class="pantry-button-dash nes-btn" id="pantry-button-dash">Pantry</a>
+    <a href="/api/dashboard" class="dashboard-button-dash nes-btn" id="dashboard-button-dash">Dashboard</a>
+        
 
     <!-- Handlebars Template -->

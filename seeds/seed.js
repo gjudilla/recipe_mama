@@ -8,9 +8,9 @@ const userData = require('./userData.json');
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  await User.bulkCreate(userData);
+  // await User.bulkCreate(userData);
 
-  await Recipe.bulkCreate(recipeData);
+  // await Recipe.bulkCreate(recipeData);
   process.exit(0);
 };
 

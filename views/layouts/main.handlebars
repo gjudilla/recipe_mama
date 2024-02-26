@@ -12,49 +12,36 @@
   <link rel="stylesheet" type="text/css" href="/css/jass.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<style>
-  .logout-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .pantry-button {
-    position: absolute;
-    top: 10px;
-    right: 150px;
-    padding: 8px 16px;
-    background-color: #514d4d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-</style>
 
 <body>
   <header>
-    <h1>Recipe Mama</h1>
+    <h1 class="container">Recipe Mama</h1>
   </header>
   <main>
     <aside>
       <h2></h2>
     </aside>
-    <div class="gallery">
+    <div class="handlebar">
       {{{body}}}
     </div>
   </main>
   {{#if loggedIn}}
   <button class="logout-button nes-btn" id="logout-button">Logout</button>
-  <a href="/api/pantry" class="pantry-button nes-btn" id="pantry-button">Pantry</a>
+  
   {{/if}}
-  <script src="/js/logout.js"></script>
+  
+
+      <script type="module">
+        import {
+            Draggable,
+            Sortable,
+            Droppable,
+            Swappable,
+        } from 'https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs';
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.2.3/draggable.bundle.legacy.min.js"></script>
+
 </body>
 
 </html>

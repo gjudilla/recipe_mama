@@ -1,22 +1,3 @@
 [
-    {
-        "userName": "1BlogHost",
-        "userPassword": "password12345"
-    },
-    {
-        "userName": "2BlogHost",
-        "userPassword": "password12345"
-    },
-    {
-        "userName": "3BlogHost",
-        "userPassword": "password12345"
-    },
-    {
-        "userName": "4BlogHost",
-        "userPassword": "password12345"
-    },
-    {
-        "userName": "5BlogHost",
-        "userPassword": "password12345"
-    }
+
 ]
