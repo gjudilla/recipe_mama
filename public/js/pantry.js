@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(rawIngredients);
         const contentString = ingredients.join(', ');
         console.log(contentString);
-        var obj;
           fetch('/api/pantry', {
           method: 'POST',
           body: JSON.stringify({

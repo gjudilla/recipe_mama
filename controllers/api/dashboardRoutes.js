@@ -27,9 +27,9 @@ router.get('/myrecipes', async (req, res) => {
       const userName = req.session.userName;
       
       // If there's no logged-in user, redirect or handle as necessary
-      if (!userName) {
-          return res.redirect('/'); 
-      }
+    //   if (!userName) {
+    //       return res.redirect('/'); 
+    //   }
 
       const dbRecipeData = await Recipe.findAll({
           where: {
