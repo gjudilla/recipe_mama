@@ -1,25 +1,23 @@
-const router = require('express').Router();
-const path = require('path');
-const { Recipe } = require('../../models');
+const router = require("express").Router();
+const path = require("path");
+const { Recipe } = require("../../models");
 const OpenAI = require("openai-api");
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 // Axios library
 const axios = require("axios");
-const sequelize = require('../../config/connection');
-// This is the 'get' route 
-router.get('/', async (req, res) => {
-
-  res.render('pantry');
+const sequelize = require("../../config/connection");
+// This is the 'get' route
+router.get("/", async (req, res) => {
+  res.render("pantry");
 });
 
-
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
   const response = await getRecipefromOpenAI(req.body.ingredients);
   // console.log(response);
 
   try {
-    const splitContent = response.split('\n\n');
+    const splitContent = response.split("\n\n");
     let [recipeTitle, ingredients, instructions] = splitContent;
 
     let postedBy = req.session.userName;
@@ -27,37 +25,14 @@ router.post('/', async (req, res) => {
       recipeTitle,
       ingredients,
       instructions,
-      postedBy
+      postedBy,
     });
-    // resolve(newRecipeData)
-    // res.redirect('/api/dashboard');
-  }
-  catch (error) {
+    res.json(newRecipeData);
+  } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
-  
 });
-
-// router.get('/fetchHighestEntry', async (req, res) => {
-//   try {
-//     // Define the SQL query to fetch the entry with the highest ID
-//     const sqlQuery = 'SELECT * FROM blog_db.recipe ORDER BY id DESC LIMIT 1';
-
-//     // Execute the SQL query
-//     const results = await sequelize.query(sqlQuery);
-//     // return results
-
-//     // Respond with the result
-//     console.log(results[0]);
-//     //   .recipe_title);
-//     // console.log(results[0].ingredients);
-//     // console.log(results[0].instructions); // Assuming only one result is expected
-//   } catch (error) {
-//     console.error('Error executing SQL query:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
 
 async function getRecipefromOpenAI(contentString) {
   const data = {
@@ -75,8 +50,6 @@ async function getRecipefromOpenAI(contentString) {
     max_tokens: 500,
     temperature: 1,
   };
-
-
 
   try {
     const response = await axios.post(
@@ -97,4 +70,4 @@ async function getRecipefromOpenAI(contentString) {
   }
 }
 
-module.exports = router
+module.exports = router;
