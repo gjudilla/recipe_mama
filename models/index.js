@@ -7,7 +7,9 @@ User.hasMany(Recipe, {
 });
 
 Recipe.belongsTo(User, {
-  foreignKey: 'user_id'
+  foreignKey: 'postedBy', // The foreign key in the Recipe model
+  targetKey: 'id', // The target key in the User model
+  as: 'postedByUser'
 });
 
 module.exports = { User, Recipe };

@@ -14,6 +14,19 @@ router.use("/api", apiRoutes);
 
 
 let contentString;
+// This is the 'get' route 
+router.get('/', async (req, res) => {
+  // Here, index.html2 is rendered
+  res.sendFile(path.join(__dirname, '../../views/index2.html'));
+});
+
+router.post('/', async (req, res) => {
+  console.log(req.body);
+  const response = await getRecipefromOpenAI(req.body.ingredients);
+  console.log(response);
+  // Here, index.html2 is rendered
+  res.json(response);
+});
 
 async function getRecipefromOpenAI() {
   const data = {

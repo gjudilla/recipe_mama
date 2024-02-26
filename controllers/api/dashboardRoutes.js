@@ -7,7 +7,9 @@ router.get('/', async (req, res) => {
         const dbRecipeData = await Recipe.findAll({
             include: [
                 {
-                    model:User,
+                    model: User,
+                    attributes: ['userName'], // Specify the attributes to include from the User model
+                    as: 'postedByUser'
                     
                 },
             ],
