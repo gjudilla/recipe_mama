@@ -36,7 +36,7 @@
 
 [Visit the deployed site](https://recipe-mama-0252d29f9673.herokuapp.com/)
 
-[Visit the Github repository](https://github.com/JordanFerrario/recipe_mama)
+[Visit the Github repository](https://github.com/gjudilla/recipe_mama)
 
 This application allows a user to input the ingredients they have available for a meal, and with the click of a button they can get the recipe for a meal to cook, using those ingredients.
 
